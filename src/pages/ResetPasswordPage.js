@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
     Box, Button, TextField, Typography, Container, Paper, 
-    Alert, CircularProgress, Fade, Avatar, Stack, InputAdornment, IconButton 
+    Alert, CircularProgress, Fade, Stack, InputAdornment, IconButton 
 } from '@mui/material';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';

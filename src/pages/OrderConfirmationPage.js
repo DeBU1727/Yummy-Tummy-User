@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Typography, Container, Button, Paper, Fade, Avatar, Stack } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import RestaurantIcon from '@mui/icons-material/Restaurant';

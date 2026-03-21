@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from './api';
-import { fetchCartItems, clearCartState, mergeGuestCart } from './cartSlice';
+import { clearCartState, mergeGuestCart } from './cartSlice';
 import { showNotification } from './notificationSlice';
 
 // Helper to decode roles from JWT

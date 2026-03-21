@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
     Dialog, DialogTitle, DialogContent, DialogActions, 
     Button, TextField, Typography, Box, CircularProgress,
@@ -28,6 +28,26 @@ const OtpDialog = ({ open, email, onSuccess, onClose }) => {
     const timerRef = useRef(null);
     const inputRef = useRef(null);
 
+    const stopTimer = useCallback(() => {
+        if (timerRef.current) clearInterval(timerRef.current);
+    }, []);
+
+    const startTimer = useCallback(() => {
+        setTimer(30);
+        setCanResend(false);
+        stopTimer();
+        timerRef.current = setInterval(() => {
+            setTimer((prev) => {
+                if (prev <= 1) {
+                    stopTimer();
+                    setCanResend(true);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    }, [stopTimer]);
+
     useEffect(() => {
         if (open) {
             setOtp('');
@@ -42,27 +62,7 @@ const OtpDialog = ({ open, email, onSuccess, onClose }) => {
             stopTimer();
         }
         return () => stopTimer();
-    }, [open]);
-
-    const startTimer = () => {
-        setTimer(30);
-        setCanResend(false);
-        stopTimer();
-        timerRef.current = setInterval(() => {
-            setTimer((prev) => {
-                if (prev <= 1) {
-                    stopTimer();
-                    setCanResend(true);
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
-    };
-
-    const stopTimer = () => {
-        if (timerRef.current) clearInterval(timerRef.current);
-    };
+    }, [open, startTimer, stopTimer]);
 
     const handleVerify = async () => {
         setLoading(true);

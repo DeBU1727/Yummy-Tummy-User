@@ -14,8 +14,6 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartItem } from '../../store/cartSlice'; 
-import { selectIsAuthenticated } from '../../store/authSlice';
-import { showNotification } from '../../store/notificationSlice';
 import { API_BASE_URL } from '../../config';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
@@ -33,7 +31,6 @@ const Menu = () => {
   const [menu, setMenu] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/menu`)
