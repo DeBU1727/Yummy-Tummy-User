@@ -61,9 +61,9 @@ const AppContent = () => {
           
           <Route path="/contact" element={<StaticInfoPage title="Contact">
             <p>You can reach us at our main office:</p>
-            <p><strong>Address:</strong> 123 Foodie Street, Gourmet City, NY 10001</p>
-            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-            <p><strong>Email:</strong> info@foody.com</p>
+            <p><strong>Address:</strong> 123 Foodie Street, Kolkata, Kolkata-700091</p>
+            <p><strong>Phone:</strong> +91 7319001727</p>
+            <p><strong>Email:</strong> gdebanshu1727@gmail.com</p>
           </StaticInfoPage>} />
           
           <Route path="/terms" element={<StaticInfoPage title="Terms of Service">
