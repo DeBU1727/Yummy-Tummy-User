@@ -191,16 +191,15 @@ const ProfilePage = () => {
                             }}
                         >
                             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={4} alignItems="center">
-                                <Avatar 
-                                    src={profile?.profilePicturePath ? `${API_BASE_URL}${profile.profilePicturePath}` : ''} 
-                                    sx={{ 
-                                        width: 120, 
-                                        height: 120, 
+                                <Avatar
+                                    src={profile?.profilePicturePath ? (profile.profilePicturePath.startsWith('http') ? profile.profilePicturePath : `${API_BASE_URL}${profile.profilePicturePath}`) : ''}
+                                    sx={{
+                                        width: 120,
+                                        height: 120,
                                         boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                                         border: `4px solid ${BRAND.bg}`
                                     }}
-                                />
-                                <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+                                />                                <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
                                     <Typography variant="h6" sx={{ fontWeight: 800, mb: 2 }}>Profile Picture</Typography>
                                     <Stack direction="row" spacing={2} justifyContent={{ xs: 'center', sm: 'flex-start' }} alignItems="center" flexWrap="wrap" useFlexGap sx={{ gap: 2 }}>
                                         <input

@@ -111,7 +111,9 @@ const Menu = () => {
 
           <Grid container spacing={{ xs: 4, md: 6 }}>
             {items.map((item, index) => {
-              const imageSrc = item.image?.startsWith('/uploads') ? `${API_BASE_URL}${item.image}` : item.image;
+              const imageSrc = item.image?.startsWith('http') 
+                ? item.image 
+                : (item.image?.startsWith('/uploads') ? `${API_BASE_URL}${item.image}` : item.image);
               
               return (
                 <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>

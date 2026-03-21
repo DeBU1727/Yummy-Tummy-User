@@ -119,9 +119,9 @@ const OfferCarousel = () => {
             {/* Render 100 copies of the offers array to create the infinite runway */}
             {[...Array(100)].map((_, setIndex) => (
               offers.map((offer, index) => {
-                const imageUrl = offer.imageUrl?.startsWith('/uploads') 
-                  ? `${API_BASE_URL}${offer.imageUrl}` 
-                  : offer.imageUrl;
+                const imageUrl = offer.imageUrl?.startsWith('http') 
+                  ? offer.imageUrl 
+                  : (offer.imageUrl?.startsWith('/uploads') ? `${API_BASE_URL}${offer.imageUrl}` : offer.imageUrl);
                 
                 const cardColor = CARD_COLORS[index % CARD_COLORS.length];
                 const uniqueKey = `copy-${setIndex}-offer-${offer.id}`;
