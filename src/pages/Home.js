@@ -78,13 +78,7 @@ const Home = () => {
                   >
                     Explore New
                   </Button>
-                  <Button 
-                    variant="text" 
-                    startIcon={<PlayCircleIcon sx={{ fontSize: '40px !important', color: BRAND.text }} />}
-                    sx={{ color: BRAND.text, fontWeight: 800, textTransform: 'none', fontSize: '1rem', '&:hover': { bgcolor: 'transparent', opacity: 0.8 } }}
-                  >
-                    Watch Video
-                  </Button>
+                  
                 </Stack>
               </Box>
             </Fade>
