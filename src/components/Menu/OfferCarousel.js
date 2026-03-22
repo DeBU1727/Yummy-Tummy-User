@@ -117,7 +117,7 @@ const OfferCarousel = () => {
             }}
           >
             {/* Render 100 copies of the offers array to create the infinite runway */}
-            {[...Array(100)].map((_, setIndex) => (
+            {Array.isArray(offers) && [...Array(100)].map((_, setIndex) => (
               offers.map((offer, index) => {
                 const imageUrl = offer.imageUrl?.startsWith('http') 
                   ? offer.imageUrl 

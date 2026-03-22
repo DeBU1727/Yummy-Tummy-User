@@ -34,7 +34,16 @@ const Menu = () => {
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/menu`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new TypeError("Oops, we haven't got JSON!");
+        }
+        return res.json();
+      })
       .then((data) => {
         setMenu(data);
         setLoading(false);
