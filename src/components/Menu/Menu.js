@@ -12,7 +12,7 @@ import {
   Fade,
   Avatar
 } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCartItem } from '../../store/cartSlice'; 
 import { API_BASE_URL } from '../../config';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';

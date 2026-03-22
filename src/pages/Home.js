@@ -7,7 +7,6 @@ import OfferCarousel from '../components/Menu/OfferCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuthenticated } from '../store/authSlice';
 import { fetchCartItems } from '../store/cartSlice';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 // Branding Palette from Reference
 const BRAND = {
