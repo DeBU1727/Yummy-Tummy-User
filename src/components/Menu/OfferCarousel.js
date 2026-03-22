@@ -218,7 +218,7 @@ const OfferCarousel = () => {
 
         {/* Dots Indicator */}
         <Box sx={{ position: 'absolute', bottom: -25, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
-          {offers.map((_, index) => (
+          {Array.isArray(offers) && offers.map((_, index) => (
             <Box
               key={index}
               sx={{
