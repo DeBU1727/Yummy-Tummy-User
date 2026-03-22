@@ -1,11 +1,13 @@
 const getApiBaseUrl = () => {
-  // Use the environment variable if available (Netlify build-time)
-  if (process.env.REACT_APP_API_BASE_URL) {
-    return process.env.REACT_APP_API_BASE_URL;
+  const envUrl = process.env.REACT_APP_API_BASE_URL;
+  
+  if (envUrl && envUrl !== 'REPLACE_WITH_YOUR_BACKEND_URL') {
+    return envUrl;
   }
   
-  // Safe fallback for local development if .env is missing
+  console.warn("WARNING: REACT_APP_API_BASE_URL is not defined in the environment. Falling back to localhost.");
   return 'http://localhost:9090';
 };
 
 export const API_BASE_URL = getApiBaseUrl();
+console.log("App initialized with API_BASE_URL:", API_BASE_URL);
