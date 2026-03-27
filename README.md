@@ -19,16 +19,6 @@ This project is built using a robust, multi-language full-stack architecture:
 * HTML5
 * CSS3
 
-## 🚀 Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-* [Node.js](https://nodejs.org/) installed
-* [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/) installed
-* [MySQL](https://www.mysql.com/) installed and running
-* A [Brevo](https://www.brevo.com/) account and API key for email services
-
 ### Installation
 
 1. **Clone the repository:**
