@@ -19,14 +19,6 @@ This project is built using a robust, multi-language full-stack architecture:
 * HTML5
 * CSS3
 
-**Backend:**
-* Node.js
-* Java
-
-**Database & Services:**
-* MySQL
-* Brevo (Email API for OTP authentication)
-
 ## 🚀 Getting Started
 
 To get a local copy up and running, follow these simple steps.
