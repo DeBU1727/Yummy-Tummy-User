@@ -91,7 +91,7 @@ const HelpCenter = () => {
                     </Avatar>
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Phone Support</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>+1 (555) 123-4567</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>+91 7319001727</Typography>
                     </Box>
                   </Stack>
 
@@ -101,7 +101,7 @@ const HelpCenter = () => {
                     </Avatar>
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Email Support</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>support@foody.com</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>gdebanshu1727@gmail.com</Typography>
                     </Box>
                   </Stack>
                 </Stack>

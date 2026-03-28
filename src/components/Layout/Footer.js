@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Container, Grid, Typography, IconButton, Stack, Divider, Link } from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link as RouterLink } from 'react-router-dom';
 
 // Branding Palette matching the Header
@@ -45,20 +43,36 @@ const Footer = () => {
                 Delivering deliciousness to your doorstep since 2026. Your favorite local food, prepared with love and served with a smile.
               </Typography>
               <Stack direction="row" spacing={1}>
-                {[FacebookIcon, InstagramIcon, TwitterIcon, GitHubIcon].map((Icon, index) => (
-                  <IconButton 
-                    key={index}
-                    sx={{ 
-                      color: BRAND.text, 
-                      bgcolor: 'rgba(0,0,0,0.04)',
-                      '&:hover': { bgcolor: BRAND.primary, color: '#fff', transform: 'translateY(-2px)' },
-                      transition: 'all 0.2s',
-                      width: 40, height: 40
-                    }}
-                  >
-                    <Icon fontSize="small" />
-                  </IconButton>
-                ))}
+                <IconButton 
+                  component="a"
+                  href="https://github.com/DeBU1727"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    color: BRAND.text, 
+                    bgcolor: 'rgba(0,0,0,0.04)',
+                    '&:hover': { bgcolor: BRAND.primary, color: '#fff', transform: 'translateY(-2px)' },
+                    transition: 'all 0.2s',
+                    width: 40, height: 40
+                  }}
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+                <IconButton 
+                  component="a"
+                  href="https://www.linkedin.com/in/debanshu-g"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    color: BRAND.text, 
+                    bgcolor: 'rgba(0,0,0,0.04)',
+                    '&:hover': { bgcolor: BRAND.primary, color: '#fff', transform: 'translateY(-2px)' },
+                    transition: 'all 0.2s',
+                    width: 40, height: 40
+                  }}
+                >
+                  <LinkedInIcon fontSize="small" />
+                </IconButton>
               </Stack>
             </Stack>
           </Grid>
