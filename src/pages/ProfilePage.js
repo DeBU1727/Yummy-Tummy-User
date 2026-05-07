@@ -183,7 +183,7 @@ const ProfilePage = () => {
                         <Paper 
                             elevation={0} 
                             sx={{ 
-                                p: 4, mb: 4, 
+                                p: { xs: 3, md: 4 }, mb: 4, 
                                 borderRadius: 6, 
                                 backgroundColor: BRAND.surface,
                                 boxShadow: '0 20px 40px rgba(0,0,0,0.04)',
@@ -194,14 +194,15 @@ const ProfilePage = () => {
                                 <Avatar
                                     src={profile?.profilePicturePath ? (profile.profilePicturePath.startsWith('http') ? profile.profilePicturePath : `${API_BASE_URL}${profile.profilePicturePath}`) : ''}
                                     sx={{
-                                        width: 120,
-                                        height: 120,
+                                        width: { xs: 100, md: 120 },
+                                        height: { xs: 100, md: 120 },
                                         boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                                         border: `4px solid ${BRAND.bg}`
                                     }}
-                                />                                <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+                                />
+                                <Box sx={{ textAlign: { xs: 'center', sm: 'left' }, width: '100%' }}>
                                     <Typography variant="h6" sx={{ fontWeight: 800, mb: 2 }}>Profile Picture</Typography>
-                                    <Stack direction="row" spacing={2} justifyContent={{ xs: 'center', sm: 'flex-start' }} alignItems="center" flexWrap="wrap" useFlexGap sx={{ gap: 2 }}>
+                                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent={{ xs: 'center', sm: 'flex-start' }} alignItems="center">
                                         <input
                                             accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                             style={{ display: 'none' }}
@@ -209,10 +210,11 @@ const ProfilePage = () => {
                                             type="file"
                                             onChange={handleFileSelect}
                                         />
-                                        <label htmlFor="raised-button-file">
+                                        <label htmlFor="raised-button-file" style={{ width: '100%' }}>
                                             <Button 
                                                 variant="outlined" 
                                                 component="span"
+                                                fullWidth={{ xs: true, sm: false }}
                                                 startIcon={<CloudUploadIcon />}
                                                 sx={{ 
                                                     borderRadius: '30px', 
@@ -220,7 +222,9 @@ const ProfilePage = () => {
                                                     fontWeight: 700,
                                                     color: BRAND.secondary,
                                                     borderColor: BRAND.secondary,
-                                                    '&:hover': { borderColor: BRAND.primary, color: BRAND.primary }
+                                                    px: 3,
+                                                    '&:hover': { borderColor: BRAND.primary, color: BRAND.primary },
+                                                    width: { xs: '100%', sm: 'auto' }
                                                 }}
                                             >
                                                 {selectedFile ? 'Change File' : 'Choose Picture'}
@@ -231,12 +235,15 @@ const ProfilePage = () => {
                                             <Button 
                                                 onClick={handlePictureUpload} 
                                                 variant="contained" 
+                                                fullWidth={{ xs: true, sm: false }}
                                                 sx={{ 
                                                     borderRadius: '30px', 
                                                     bgcolor: BRAND.primary, 
                                                     fontWeight: 800,
+                                                    px: 4,
                                                     boxShadow: '0 6px 15px rgba(235, 77, 75, 0.3)',
-                                                    '&:hover': { bgcolor: '#d44646' }
+                                                    '&:hover': { bgcolor: '#d44646' },
+                                                    width: { xs: '100%', sm: 'auto' }
                                                 }}
                                             >
                                                 Upload New
@@ -244,7 +251,7 @@ const ProfilePage = () => {
                                         )}
                                     </Stack>
                                     {selectedFile && (
-                                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+                                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1, textAlign: { xs: 'center', sm: 'left' } }}>
                                             Selected: {selectedFile.name}
                                         </Typography>
                                     )}
@@ -290,13 +297,15 @@ const ProfilePage = () => {
                             <Button 
                                 type="submit" 
                                 variant="contained" 
+                                fullWidth={{ xs: true, sm: false }}
                                 sx={{ 
                                     borderRadius: '30px', 
-                                    px: 4, py: 1.5, 
+                                    px: 6, py: 1.5, 
                                     fontWeight: 800,
                                     bgcolor: BRAND.primary,
                                     boxShadow: '0 8px 20px rgba(235, 77, 75, 0.3)',
-                                    '&:hover': { bgcolor: '#d44646' }
+                                    '&:hover': { bgcolor: '#d44646' },
+                                    width: { xs: '100%', sm: 'auto' }
                                 }}
                             >
                                 Save Changes
@@ -372,17 +381,19 @@ const ProfilePage = () => {
                                 />
                             </Stack>
 
-                            <Stack direction="row" spacing={2} alignItems="center">
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
                                 <Button 
                                     type="submit" 
                                     variant="contained" 
+                                    fullWidth={{ xs: true, sm: false }}
                                     sx={{ 
                                         borderRadius: '30px', 
-                                        px: 4, py: 1.5, 
+                                        px: 6, py: 1.5, 
                                         fontWeight: 800,
                                         bgcolor: BRAND.secondary,
                                         boxShadow: '0 8px 20px rgba(240, 147, 43, 0.3)',
-                                        '&:hover': { bgcolor: '#e67e22' }
+                                        '&:hover': { bgcolor: '#e67e22' },
+                                        width: { xs: '100%', sm: 'auto' }
                                     }}
                                 >
                                     Update Password
@@ -403,6 +414,7 @@ const ProfilePage = () => {
                                 )}
                             </Stack>
                         </Paper>
+
 
                     </Box>
                 </Fade>

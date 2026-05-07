@@ -127,22 +127,24 @@ const OrdersPage = () => {
               <TableContainer 
                 component={Paper} 
                 sx={{ 
-                  borderRadius: 6, 
+                  borderRadius: { xs: 4, md: 6 }, 
                   boxShadow: '0 20px 40px rgba(0,0,0,0.04)',
                   border: '1px solid rgba(0,0,0,0.02)',
                   bgcolor: BRAND.surface,
-                  overflow: 'hidden'
+                  overflowX: 'auto', // Enable horizontal scroll on mobile
+                  '&::-webkit-scrollbar': { height: 6 },
+                  '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(0,0,0,0.05)', borderRadius: 10 }
                 }}
               >
-                <Table>
+                <Table sx={{ minWidth: { xs: 650, md: '100%' } }}>
                   <TableHead sx={{ bgcolor: '#f8f9fa' }}>
                     <TableRow>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>ORDER ID</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DATE & TIME</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>TYPE</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>STATUS</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary' }}>TOTAL</TableCell>
-                      <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary' }}>ACTIONS</TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>ORDER ID</TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>DATE & TIME</TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>TYPE</TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>STATUS</TableCell>
+                      <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>TOTAL</TableCell>
+                      <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>ACTIONS</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -151,8 +153,8 @@ const OrdersPage = () => {
                       
                       return (
                         <TableRow key={order.id} hover sx={{ transition: 'all 0.2s', '&:hover': { bgcolor: '#fffbf2' } }}>
-                          <TableCell sx={{ fontWeight: 900, color: BRAND.text }}>#{order.id}</TableCell>
-                          <TableCell sx={{ color: 'text.secondary', fontWeight: 500 }}>
+                          <TableCell sx={{ fontWeight: 900, color: BRAND.text, whiteSpace: 'nowrap' }}>#{order.id}</TableCell>
+                          <TableCell sx={{ color: 'text.secondary', fontWeight: 500, whiteSpace: 'nowrap' }}>
                             {new Date(order.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
                           </TableCell>
                           <TableCell>
@@ -162,6 +164,7 @@ const OrdersPage = () => {
                               sx={{ 
                                 fontWeight: 800, 
                                 letterSpacing: 0.5,
+                                fontSize: '0.7rem',
                                 bgcolor: order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.1)' : 'rgba(240, 147, 43, 0.1)',
                                 color: order.orderType === 'DELIVERY' ? BRAND.primary : BRAND.secondary,
                                 border: `1px solid ${order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.3)' : 'rgba(240, 147, 43, 0.3)'}`
@@ -174,17 +177,18 @@ const OrdersPage = () => {
                               size="small" 
                               sx={{ 
                                 fontWeight: 800,
+                                fontSize: '0.7rem',
                                 bgcolor: statusStyle.bg,
                                 color: statusStyle.text,
                                 border: `1px solid ${statusStyle.border}`
                               }} 
                             />
                           </TableCell>
-                          <TableCell align="right" sx={{ fontWeight: 900, color: BRAND.primary }}>
+                          <TableCell align="right" sx={{ fontWeight: 900, color: BRAND.primary, whiteSpace: 'nowrap' }}>
                             ₹{order.totalPrice.toFixed(2)}
                           </TableCell>
                           <TableCell align="center">
-                            <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
+                            <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ minWidth: 120 }}>
                               <IconButton 
                                 onClick={() => navigate(`/orders/${order.id}`)}
                                 sx={{ color: BRAND.secondary, bgcolor: 'rgba(240, 147, 43, 0.1)', '&:hover': { bgcolor: 'rgba(240, 147, 43, 0.2)' } }}
@@ -202,6 +206,7 @@ const OrdersPage = () => {
                                   sx={{ 
                                     borderRadius: '20px', textTransform: 'none', fontWeight: 700,
                                     borderColor: 'error.main', color: 'error.main',
+                                    fontSize: '0.75rem', py: 0.5,
                                     '&:hover': { bgcolor: 'error.50', borderColor: 'error.dark' }
                                   }}
                                 >
@@ -217,6 +222,7 @@ const OrdersPage = () => {
                                   sx={{ 
                                     borderRadius: '20px', textTransform: 'none', fontWeight: 700,
                                     bgcolor: '#f1f2f6', color: 'text.secondary', boxShadow: 'none',
+                                    fontSize: '0.75rem', py: 0.5,
                                     '&:hover': { bgcolor: 'error.main', color: '#fff', boxShadow: '0 4px 10px rgba(220, 53, 69, 0.3)' }
                                   }}
                                 >
@@ -231,6 +237,7 @@ const OrdersPage = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+
             )}
           </Box>
         </Fade>
