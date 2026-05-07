@@ -12,7 +12,6 @@ import { BRAND } from '../theme';
 const Home = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const navigate = useNavigate(); 
 

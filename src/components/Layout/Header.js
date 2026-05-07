@@ -5,12 +5,8 @@ import {
   Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, useMediaQuery, useTheme
 } from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
-import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { selectCartTotalItems, toggleCart } from '../../store/cartSlice';
