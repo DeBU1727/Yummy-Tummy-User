@@ -62,29 +62,7 @@ const MenuPage = () => {
       </Container>
 
       {/* RESPONSIVE MENU GRID */}
-      <Box 
-        sx={{
-          '& .MuiCard-root': {
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-          },
-          '& .MuiCardMedia-root, & img': {
-            width: '100%',  
-            objectFit: 'cover',
-          },
-          '& .MuiTypography-h6, & .MuiTypography-h5, & .MuiTypography-subtitle1': {
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          },
-          '& .MuiTypography-body1, & .MuiTypography-body2': {
-            overflowWrap: 'break-word',
-            wordWrap: 'break-word',
-            hyphens: 'auto'
-          }
-        }}
-      >
+      <Box>
         <Menu />
       </Box>
     </Box>

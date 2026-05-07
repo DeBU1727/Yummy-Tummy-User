@@ -77,11 +77,11 @@ const OfferCarousel = () => {
           position: 'relative'
         }}
       >
-        {/* Navigation Buttons - Adjusted Left/Right positioning for Mobile to prevent overflow */}
+        {/* Navigation Buttons */}
         <IconButton
           onClick={handlePrev}
           sx={{ 
-            position: 'absolute', left: { xs: 0, sm: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
+            position: 'absolute', left: { xs: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
             bgcolor: '#ffffff', color: '#2d3436', boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
             width: { xs: 40, md: 55 }, height: { xs: 40, md: 55 }, zIndex: 5,
             '&:hover': { bgcolor: '#f8f9fa', transform: 'translateY(-50%) scale(1.05)' }, transition: 'all 0.2s'
@@ -93,7 +93,7 @@ const OfferCarousel = () => {
         <IconButton
           onClick={handleNext}
           sx={{ 
-            position: 'absolute', right: { xs: 0, sm: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
+            position: 'absolute', right: { xs: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
             bgcolor: '#ffffff', color: '#2d3436', boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
             width: { xs: 40, md: 55 }, height: { xs: 40, md: 55 }, zIndex: 5,
             '&:hover': { bgcolor: '#f8f9fa', transform: 'translateY(-50%) scale(1.05)' }, transition: 'all 0.2s'
@@ -107,7 +107,6 @@ const OfferCarousel = () => {
           <Box
             sx={{
               display: 'flex',
-              alignItems: 'stretch', // Forces all wrappers to equal height in the horizontal row
               transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
               transform: {
                 xs: `translateX(calc(-${currentIndex} * 100%))`,
@@ -128,7 +127,7 @@ const OfferCarousel = () => {
                 const uniqueKey = `copy-${setIndex}-offer-${offer.id}`;
 
                 return (
-                  // FIXED CLIPPING ISSUE: Added pt: 8 and pb: 6 to create a "safe zone"
+                  // FIXED CLIPPING ISSUE: Added pt: 8 and pb: 6 to create a "safe zone" inside the hidden overflow
                   <Box 
                     key={uniqueKey} 
                     sx={{ 
@@ -138,8 +137,7 @@ const OfferCarousel = () => {
                         pt: 8, // Safe zone for the floating avatar (top: -50px)
                         pb: 6, // Safe zone for the bottom drop-shadow and full card height
                         display: 'flex',
-                        flexDirection: 'column',
-                        height: 'auto' // Crucial: Allows box to stretch properly in flex container
+                        flexDirection: 'column'
                     }}
                   >
                     <Paper
@@ -149,27 +147,27 @@ const OfferCarousel = () => {
                         color: '#ffffff',
                         borderRadius: '24px',
                         p: 3,
-                        pt: 5,
+                        pt: 6,
                         position: 'relative',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         textAlign: 'center',
                         flexGrow: 1, 
-                        height: '100%', // Swapped minHeight to 100% so they all stretch evenly
-                        boxShadow: `0 15px 30px ${cardColor}60` 
+                        height: 240, // ABSOLUTE FIXED HEIGHT
+                        boxShadow: `0 15px 30px ${cardColor}60`,
+                        overflow: 'visible'
                       }}
                     >
-                      {/* Floating Circular Image */}
+                      {/* Floating Circular Image - FIXED SIZE */}
                       <Box 
                         sx={{
-                          position: 'absolute', top: -50, left: '50%', transform: 'translateX(-50%)',
+                          position: 'absolute', top: -45, left: '50%', transform: 'translateX(-50%)',
                           width: 90, height: 90, borderRadius: '50%',
                           border: '4px solid #ffffff', bgcolor: '#ffffff',
                           boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
                           display: 'flex', justifyContent: 'center', alignItems: 'center',
-                          flexShrink: 0, // Prevents image squishing
-                          zIndex: 1
+                          zIndex: 2
                         }}
                       >
                         <Avatar 
@@ -182,18 +180,17 @@ const OfferCarousel = () => {
                         </Avatar>
                       </Box>
 
-                      {/* Card Content */}
-                      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
+                      {/* Card Content - FIXED HEIGHTS */}
+                      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', mt: 1 }}>
                         <Typography 
                           variant="h6" 
                           sx={{ 
                             fontWeight: 800, 
-                            mb: 0.5, 
-                            mt: 1, 
+                            mb: 1, 
                             lineHeight: 1.2,
-                            minHeight: 48, // Fixed minimum height area for title
+                            height: 44, 
                             display: '-webkit-box',
-                            WebkitLineClamp: 2, // Enforces 2-line maximum before truncating
+                            WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis'
@@ -202,33 +199,35 @@ const OfferCarousel = () => {
                           {offer.title}
                         </Typography>
                         
-                        <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, opacity: 0.9 }}>
+                        <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1, height: 24 }}>
+                          <Typography variant="body2" sx={{ fontWeight: 800, letterSpacing: 0.5 }}>
                             {offer.discountPercentage}% OFF
                           </Typography>
-                          <FavoriteBorderIcon sx={{ fontSize: 16, opacity: 0.8 }} />
+                          <FavoriteBorderIcon sx={{ fontSize: 16, opacity: 0.9 }} />
                         </Stack>
                       </Box>
 
-                      {/* Promo Button */}
-                      <Button
-                        variant="contained"
-                        sx={{
-                          bgcolor: 'rgba(255, 255, 255, 0.25)',
-                          color: '#ffffff',
-                          borderRadius: '30px',
-                          textTransform: 'none',
-                          fontWeight: 700,
-                          px: 3,
-                          py: 0.8,
-                          mt: 'auto', // Pushes button to bottom of standard-height card
-                          backdropFilter: 'blur(5px)',
-                          boxShadow: 'none',
-                          '&:hover': { bgcolor: '#ffffff', color: cardColor, boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }
-                        }}
-                      >
-                        {offer.offerCode ? `Code: ${offer.offerCode}` : 'Claim Offer'}
-                      </Button>
+                      {/* Promo Button - FIXED POSITION */}
+                      <Box sx={{ height: 40, mt: 'auto', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                          variant="contained"
+                          sx={{
+                            bgcolor: 'rgba(255, 255, 255, 0.3)',
+                            color: '#ffffff',
+                            borderRadius: '30px',
+                            textTransform: 'none',
+                            fontWeight: 800,
+                            px: 3,
+                            py: 0.5,
+                            backdropFilter: 'blur(10px)',
+                            boxShadow: 'none',
+                            fontSize: '0.85rem',
+                            '&:hover': { bgcolor: '#ffffff', color: cardColor, boxShadow: '0 5px 15px rgba(0,0,0,0.2)' }
+                          }}
+                        >
+                          {offer.offerCode ? `CODE: ${offer.offerCode}` : 'Claim Now'}
+                        </Button>
+                      </Box>
                     </Paper>
                   </Box>
                 );
