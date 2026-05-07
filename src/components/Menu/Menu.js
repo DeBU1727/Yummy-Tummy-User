@@ -133,31 +133,39 @@ const Menu = () => {
                       have plenty of physical space inside the Grid item to render without being truncated.
                     */}
                     <Box sx={{ 
-                      pt: 6, 
+                      pt: 8, 
                       pb: 4, 
                       display: 'flex', 
-                      justifyContent: 'center', // Center the fixed-width card
+                      justifyContent: 'center',
                       width: '100%'
                     }}>
                       <Card 
                         elevation={0}
                         sx={{ 
-                          width: { xs: 280, sm: 280, md: 280 }, // ABSOLUTE FIXED WIDTH
-                          height: 480, // ABSOLUTE FIXED HEIGHT (slightly increased to be safe)
+                          // STRICT WIDTH LOCK
+                          width: 280,
+                          minWidth: 280,
+                          maxWidth: 280,
+                          
+                          // STRICT HEIGHT LOCK
+                          height: 500,
+                          minHeight: 500,
+                          maxHeight: 500,
+
                           display: 'flex', 
                           flexDirection: 'column',
-                          borderRadius: 8,
-                          boxShadow: '0 15px 35px rgba(0,0,0,0.06)', 
+                          borderRadius: '60px', // Matches the highly rounded "capsule" look in screenshot
+                          boxShadow: '0 20px 40px rgba(0,0,0,0.05)', 
                           border: '1px solid rgba(0,0,0,0.02)',
                           bgcolor: BRAND.surface,
                           overflow: 'visible', 
                           position: 'relative',
-                          transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                          transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                           '&:hover': {
-                            transform: 'translateY(-10px)',
-                            boxShadow: '0 25px 50px rgba(235, 77, 75, 0.15)',
+                            transform: 'translateY(-12px)',
+                            boxShadow: '0 30px 60px rgba(235, 77, 75, 0.12)',
                             '& .food-img': {
-                              transform: 'translateY(-5px) scale(1.05) rotate(2deg)',
+                              transform: 'translateY(-8px) scale(1.08) rotate(3deg)',
                             }
                           }
                         }}
@@ -170,14 +178,15 @@ const Menu = () => {
                               width: 140,
                               height: 140,
                               borderRadius: '50%',
-                              bgcolor: BRAND.bg,
+                              bgcolor: '#fff',
                               display: 'flex',
                               justifyContent: 'center',
                               alignItems: 'center',
-                              boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+                              boxShadow: '0 12px 25px rgba(0,0,0,0.12)',
                               transition: 'all 0.4s ease',
                               p: 0.5,
-                              zIndex: 1
+                              zIndex: 2,
+                              border: '4px solid #fff'
                             }}
                           >
                             <Avatar 
@@ -191,55 +200,57 @@ const Menu = () => {
                           </Box>
                         </Box>
  
-                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1, display: 'flex', flexDirection: 'column', px: 3 }}>
-                          {/* FIXED HEIGHT TITLE WITH CLAMPING */}
+                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 3, pb: 1, display: 'flex', flexDirection: 'column', px: 4 }}>
+                          {/* FIXED HEIGHT TITLE */}
                           <Typography 
-                            gutterBottom 
                             variant="h6" 
                             component="div" 
                             sx={{ 
                               fontWeight: 900, 
                               color: BRAND.text, 
                               lineHeight: 1.2, 
-                              mb: 1,
-                              height: 50, 
+                              mb: 1.5,
+                              height: 52, 
                               display: '-webkit-box',
                               WebkitLineClamp: 2,
                               WebkitBoxOrient: 'vertical',
                               overflow: 'hidden',
-                              textOverflow: 'ellipsis'
+                              textOverflow: 'ellipsis',
+                              fontSize: '1.25rem'
                             }}
                           >
                             {item.name}
                           </Typography>
                           
-                          {/* FIXED HEIGHT DESCRIPTION WITH CLAMPING */}
+                          {/* FIXED HEIGHT DESCRIPTION */}
                           <Typography 
                             variant="body2" 
                             color="text.secondary" 
                             sx={{ 
                               mb: 2, 
-                              height: 60, 
+                              height: 64, 
                               overflow: 'hidden', 
                               display: '-webkit-box', 
                               WebkitLineClamp: 3, 
                               WebkitBoxOrient: 'vertical',
-                              lineHeight: 1.4,
-                              textOverflow: 'ellipsis'
+                              lineHeight: 1.5,
+                              textOverflow: 'ellipsis',
+                              opacity: 0.7,
+                              fontWeight: 500
                             }}
                           >
                             {item.description || 'Delicious & freshly prepared with the finest ingredients and authentic spices.'}
                           </Typography>
                           
                           {/* FIXED HEIGHT PRICE SECTION */}
-                          <Box sx={{ mt: 'auto', height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary }}>
+                          <Box sx={{ mt: 'auto', height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Typography variant="h4" sx={{ fontWeight: 900, color: BRAND.primary, letterSpacing: '-0.5px' }}>
                               ₹{item.price.toFixed(2)}
                             </Typography>
                           </Box>
                         </CardContent>
  
-                        <CardActions sx={{ justifyContent: 'center', pb: 3, pt: 0, height: 70 }}>
+                        <CardActions sx={{ justifyContent: 'center', pb: 5, pt: 0, height: 90 }}>
                           <Button 
                             variant="contained"
                             startIcon={<AddShoppingCartIcon />}
@@ -248,13 +259,14 @@ const Menu = () => {
                               bgcolor: BRAND.secondary,
                               color: '#fff',
                               borderRadius: '30px',
-                              fontWeight: 800,
+                              fontWeight: 900,
                               px: 4,
-                              py: 1,
+                              py: 1.5,
                               textTransform: 'none',
-                              boxShadow: '0 8px 20px rgba(240, 147, 43, 0.3)',
-                              '&:hover': { bgcolor: '#e67e22', transform: 'scale(1.05)' },
-                              transition: 'all 0.2s'
+                              fontSize: '1rem',
+                              boxShadow: '0 10px 25px rgba(240, 147, 43, 0.4)',
+                              '&:hover': { bgcolor: '#e67e22', transform: 'scale(1.05)', boxShadow: '0 15px 30px rgba(240, 147, 43, 0.5)' },
+                              transition: 'all 0.3s'
                             }}
                           >
                             Add
