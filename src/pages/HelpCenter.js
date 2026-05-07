@@ -43,7 +43,7 @@ const HelpCenter = () => {
   return (
     <Box sx={{ backgroundColor: BRAND.bg, minHeight: '100vh', pb: 10 }}>
       <Header />
-      <Container maxWidth="lg" sx={{ pt: { xs: 4, md: 8 } }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 6, md: 10 } }}>
         <Fade in={true} timeout={800}>
           <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
             

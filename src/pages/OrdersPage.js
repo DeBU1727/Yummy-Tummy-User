@@ -134,102 +134,104 @@ const OrdersPage = () => {
                   overflow: 'hidden'
                 }}
               >
-                <Table>
-                  <TableHead sx={{ bgcolor: '#f8f9fa' }}>
-                    <TableRow>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>ORDER ID</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DATE & TIME</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>TYPE</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>STATUS</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary' }}>TOTAL</TableCell>
-                      <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary' }}>ACTIONS</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {orders.map((order) => {
-                      const statusStyle = getStatusStyle(order.orderStatus);
-                      
-                      return (
-                        <TableRow key={order.id} hover sx={{ transition: 'all 0.2s', '&:hover': { bgcolor: '#fffbf2' } }}>
-                          <TableCell sx={{ fontWeight: 900, color: BRAND.text }}>#{order.id}</TableCell>
-                          <TableCell sx={{ color: 'text.secondary', fontWeight: 500 }}>
-                            {new Date(order.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
-                          </TableCell>
-                          <TableCell>
-                            <Chip 
-                              label={order.orderType} 
-                              size="small" 
-                              sx={{ 
-                                fontWeight: 800, 
-                                letterSpacing: 0.5,
-                                bgcolor: order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.1)' : 'rgba(240, 147, 43, 0.1)',
-                                color: order.orderType === 'DELIVERY' ? BRAND.primary : BRAND.secondary,
-                                border: `1px solid ${order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.3)' : 'rgba(240, 147, 43, 0.3)'}`
-                              }} 
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Chip 
-                              label={formatStatus(order.orderStatus)} 
-                              size="small" 
-                              sx={{ 
-                                fontWeight: 800,
-                                bgcolor: statusStyle.bg,
-                                color: statusStyle.text,
-                                border: `1px solid ${statusStyle.border}`
-                              }} 
-                            />
-                          </TableCell>
-                          <TableCell align="right" sx={{ fontWeight: 900, color: BRAND.primary }}>
-                            ₹{order.totalPrice.toFixed(2)}
-                          </TableCell>
-                          <TableCell align="center">
-                            <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
-                              <IconButton 
-                                onClick={() => navigate(`/orders/${order.id}`)}
-                                sx={{ color: BRAND.secondary, bgcolor: 'rgba(240, 147, 43, 0.1)', '&:hover': { bgcolor: 'rgba(240, 147, 43, 0.2)' } }}
-                                title="View Details"
-                                size="small"
-                              >
-                                <VisibilityIcon fontSize="small" />
-                              </IconButton>
-                              
-                              {order.orderStatus === 'PENDING' && (
-                                <Button 
-                                  size="small" 
-                                  variant="outlined"
-                                  onClick={() => handleCancel(order.id)}
-                                  sx={{ 
-                                    borderRadius: '20px', textTransform: 'none', fontWeight: 700,
-                                    borderColor: 'error.main', color: 'error.main',
-                                    '&:hover': { bgcolor: 'error.50', borderColor: 'error.dark' }
-                                  }}
+                <Box sx={{ overflowX: 'auto' }}>
+                  <Table sx={{ minWidth: { xs: 800, md: '100%' } }}>
+                    <TableHead sx={{ bgcolor: '#f8f9fa' }}>
+                      <TableRow>
+                        <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>ORDER ID</TableCell>
+                        <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DATE & TIME</TableCell>
+                        <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>TYPE</TableCell>
+                        <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>STATUS</TableCell>
+                        <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary' }}>TOTAL</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary' }}>ACTIONS</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {orders.map((order) => {
+                        const statusStyle = getStatusStyle(order.orderStatus);
+                        
+                        return (
+                          <TableRow key={order.id} hover sx={{ transition: 'all 0.2s', '&:hover': { bgcolor: '#fffbf2' } }}>
+                            <TableCell sx={{ fontWeight: 900, color: BRAND.text }}>#{order.id}</TableCell>
+                            <TableCell sx={{ color: 'text.secondary', fontWeight: 500 }}>
+                              {new Date(order.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+                            </TableCell>
+                            <TableCell>
+                              <Chip 
+                                label={order.orderType} 
+                                size="small" 
+                                sx={{ 
+                                  fontWeight: 800, 
+                                  letterSpacing: 0.5,
+                                  bgcolor: order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.1)' : 'rgba(240, 147, 43, 0.1)',
+                                  color: order.orderType === 'DELIVERY' ? BRAND.primary : BRAND.secondary,
+                                  border: `1px solid ${order.orderType === 'DELIVERY' ? 'rgba(235, 77, 75, 0.3)' : 'rgba(240, 147, 43, 0.3)'}`
+                                }} 
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <Chip 
+                                label={formatStatus(order.orderStatus)} 
+                                size="small" 
+                                sx={{ 
+                                  fontWeight: 800,
+                                  bgcolor: statusStyle.bg,
+                                  color: statusStyle.text,
+                                  border: `1px solid ${statusStyle.border}`
+                                }} 
+                              />
+                            </TableCell>
+                            <TableCell align="right" sx={{ fontWeight: 900, color: BRAND.primary }}>
+                              ₹{order.totalPrice.toFixed(2)}
+                            </TableCell>
+                            <TableCell align="center">
+                              <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
+                                <IconButton 
+                                  onClick={() => navigate(`/orders/${order.id}`)}
+                                  sx={{ color: BRAND.secondary, bgcolor: 'rgba(240, 147, 43, 0.1)', '&:hover': { bgcolor: 'rgba(240, 147, 43, 0.2)' } }}
+                                  title="View Details"
+                                  size="small"
                                 >
-                                  Cancel
-                                </Button>
-                              )}
-                              
-                              {(order.orderStatus === 'CANCELLED' || order.orderStatus === 'DELIVERED' || order.orderStatus === 'SERVED' || order.orderStatus === 'REJECTED') && (
-                                <Button 
-                                  size="small" 
-                                  variant="contained"
-                                  onClick={() => handleDelete(order.id)}
-                                  sx={{ 
-                                    borderRadius: '20px', textTransform: 'none', fontWeight: 700,
-                                    bgcolor: '#f1f2f6', color: 'text.secondary', boxShadow: 'none',
-                                    '&:hover': { bgcolor: 'error.main', color: '#fff', boxShadow: '0 4px 10px rgba(220, 53, 69, 0.3)' }
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              )}
-                            </Stack>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                </Table>
+                                  <VisibilityIcon fontSize="small" />
+                                </IconButton>
+                                
+                                {order.orderStatus === 'PENDING' && (
+                                  <Button 
+                                    size="small" 
+                                    variant="outlined"
+                                    onClick={() => handleCancel(order.id)}
+                                    sx={{ 
+                                      borderRadius: '20px', textTransform: 'none', fontWeight: 700,
+                                      borderColor: 'error.main', color: 'error.main',
+                                      '&:hover': { bgcolor: 'error.50', borderColor: 'error.dark' }
+                                    }}
+                                  >
+                                    Cancel
+                                  </Button>
+                                )}
+                                
+                                {(order.orderStatus === 'CANCELLED' || order.orderStatus === 'DELIVERED' || order.orderStatus === 'SERVED' || order.orderStatus === 'REJECTED') && (
+                                  <Button 
+                                    size="small" 
+                                    variant="contained"
+                                    onClick={() => handleDelete(order.id)}
+                                    sx={{ 
+                                      borderRadius: '20px', textTransform: 'none', fontWeight: 700,
+                                      bgcolor: '#f1f2f6', color: 'text.secondary', boxShadow: 'none',
+                                      '&:hover': { bgcolor: 'error.main', color: '#fff', boxShadow: '0 4px 10px rgba(220, 53, 69, 0.3)' }
+                                    }}
+                                  >
+                                    Delete
+                                  </Button>
+                                )}
+                              </Stack>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </Box>
               </TableContainer>
             )}
           </Box>

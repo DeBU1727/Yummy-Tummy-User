@@ -14,6 +14,7 @@ import { selectOrderType, selectDeliveryDetails, clearOrder } from '../store/ord
 import { showNotification } from '../store/notificationSlice';
 import { confirmAction } from '../components/Layout/ConfirmationDialog';
 import api from '../store/api';
+import Header from '../components/Layout/Header';
 
 // Branding Palette from "Foody" Reference
 const BRAND = {
@@ -129,7 +130,8 @@ const PaymentPage = () => {
             py: { xs: 4, md: 8 },
             backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(240, 147, 43, 0.05) 0%, rgba(235, 77, 75, 0.02) 90%)'
         }}>
-            <Container maxWidth="lg">
+            <Header />
+            <Container maxWidth="lg" sx={{ mt: { xs: 4, md: 6 } }}>
                 <Fade in={true} timeout={800}>
                     <Box>
                         {/* Page Header */}

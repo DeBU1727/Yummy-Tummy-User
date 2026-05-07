@@ -5,6 +5,7 @@ import { selectOrderType, setDeliveryDetails } from '../store/orderSlice';
 import DeliveryAddressForm from '../components/Checkout/DeliveryAddressForm';
 import { Container, Typography, Box, Paper, Fade, Avatar, Stack } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import Header from '../components/Layout/Header';
 
 // Branding Palette from "Foody" Reference
 const BRAND = {
@@ -40,7 +41,8 @@ const CheckoutPage = () => {
             py: { xs: 6, md: 10 },
             backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(240, 147, 43, 0.05) 0%, rgba(235, 77, 75, 0.02) 80%)'
         }}>
-            <Container maxWidth="sm">
+            <Header />
+            <Container maxWidth="sm" sx={{ mt: { xs: 4, md: 6 } }}>
                 <Fade in={true} timeout={800}>
                     <Box>
                         {/* Page Header */}

@@ -6,8 +6,8 @@ const StaticInfoPage = ({ title, children }) => {
   return (
     <Box>
       <Header />
-      <Container maxWidth="md" sx={{ py: 8 }}>
-        <Paper elevation={0} sx={{ p: 6, borderRadius: 4, border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.04)' }}>
+      <Container maxWidth="md" sx={{ py: { xs: 4, md: 8 } }}>
+        <Paper elevation={0} sx={{ p: { xs: 3, md: 6 }, borderRadius: 4, border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.04)' }}>
           <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, color: 'primary.main' }}>
             {title}
           </Typography>

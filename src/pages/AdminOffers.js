@@ -141,78 +141,80 @@ const AdminOffers = () => {
             border: '1px solid rgba(0,0,0,0.02)',
             overflow: 'hidden'
           }}>
-            <Table>
-              <TableHead sx={{ bgcolor: BRAND.surface }}>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>CAMPAIGN TITLE</TableCell>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>COUPON CODE</TableCell>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DISCOUNT</TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', pr: 4 }}>ACTIONS</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody sx={{ bgcolor: BRAND.surface }}>
-                {offers.length === 0 ? (
+            <Box sx={{ overflowX: 'auto' }}>
+              <Table sx={{ minWidth: { xs: 800, md: '100%' } }}>
+                <TableHead sx={{ bgcolor: BRAND.surface }}>
                   <TableRow>
-                    <TableCell colSpan={4} align="center" sx={{ py: 6, color: 'text.secondary', fontStyle: 'italic' }}>
-                      No active offers found. Create one to get started!
-                    </TableCell>
+                    <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>CAMPAIGN TITLE</TableCell>
+                    <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>COUPON CODE</TableCell>
+                    <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DISCOUNT</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', pr: 4 }}>ACTIONS</TableCell>
                   </TableRow>
-                ) : (
-                  offers.map((offer) => (
-                    <TableRow key={offer.id} hover sx={{ transition: 'all 0.2s', '&:hover': { bgcolor: '#fffbf2' } }}>
-                      <TableCell>
-                        <Stack direction="row" spacing={2} alignItems="center">
-                          {offer.imageUrl && (
-                            <Avatar 
-                              src={offer.imageUrl} 
-                              variant="rounded" 
-                              sx={{ width: 50, height: 50, borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.05)' }} 
-                            />
-                          )}
-                          <Typography sx={{ fontWeight: 800, color: BRAND.text }}>{offer.title}</Typography>
-                        </Stack>
-                      </TableCell>
-                      <TableCell>
-                        <Chip 
-                          label={offer.offerCode || 'NO CODE'} 
-                          size="small"
-                          sx={{ 
-                            fontWeight: 900, 
-                            letterSpacing: 1,
-                            bgcolor: 'rgba(240, 147, 43, 0.1)', 
-                            color: BRAND.secondary,
-                            border: `1px dashed ${BRAND.secondary}`
-                          }} 
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Typography sx={{ fontWeight: 900, color: BRAND.primary }}>
-                          {offer.discountPercentage}% OFF
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="right" sx={{ pr: 3 }}>
-                        <Tooltip title="Edit Campaign">
-                          <IconButton 
-                            onClick={() => handleOpen(offer)} 
-                            sx={{ color: BRAND.secondary, '&:hover': { bgcolor: 'rgba(240, 147, 43, 0.1)' } }}
-                          >
-                            <EditOutlinedIcon />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Delete">
-                          <IconButton 
-                            onClick={() => handleDelete(offer.id)} 
-                            sx={{ color: BRAND.primary, '&:hover': { bgcolor: 'rgba(235, 77, 75, 0.1)' } }}
-                          >
-                            <DeleteOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
+                </TableHead>
+                <TableBody sx={{ bgcolor: BRAND.surface }}>
+                  {offers.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={4} align="center" sx={{ py: 6, color: 'text.secondary', fontStyle: 'italic' }}>
+                        No active offers found. Create one to get started!
                       </TableCell>
                     </TableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
+                  ) : (
+                    offers.map((offer) => (
+                      <TableRow key={offer.id} hover sx={{ transition: 'all 0.2s', '&:hover': { bgcolor: '#fffbf2' } }}>
+                        <TableCell>
+                          <Stack direction="row" spacing={2} alignItems="center">
+                            {offer.imageUrl && (
+                              <Avatar 
+                                src={offer.imageUrl} 
+                                variant="rounded" 
+                                sx={{ width: 50, height: 50, borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.05)' }} 
+                              />
+                            )}
+                            <Typography sx={{ fontWeight: 800, color: BRAND.text }}>{offer.title}</Typography>
+                          </Stack>
+                        </TableCell>
+                        <TableCell>
+                          <Chip 
+                            label={offer.offerCode || 'NO CODE'} 
+                            size="small"
+                            sx={{ 
+                              fontWeight: 900, 
+                              letterSpacing: 1,
+                              bgcolor: 'rgba(240, 147, 43, 0.1)', 
+                              color: BRAND.secondary,
+                              border: `1px dashed ${BRAND.secondary}`
+                            }} 
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <Typography sx={{ fontWeight: 900, color: BRAND.primary }}>
+                            {offer.discountPercentage}% OFF
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="right" sx={{ pr: 3 }}>
+                          <Tooltip title="Edit Campaign">
+                            <IconButton 
+                              onClick={() => handleOpen(offer)} 
+                              sx={{ color: BRAND.secondary, '&:hover': { bgcolor: 'rgba(240, 147, 43, 0.1)' } }}
+                            >
+                              <EditOutlinedIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete">
+                            <IconButton 
+                              onClick={() => handleDelete(offer.id)} 
+                              sx={{ color: BRAND.primary, '&:hover': { bgcolor: 'rgba(235, 77, 75, 0.1)' } }}
+                            >
+                              <DeleteOutlineIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </Box>
           </TableContainer>
         </Fade>
 

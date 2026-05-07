@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Typography, Container, Button, Paper, Fade, Avatar, Stack } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import Header from '../components/Layout/Header';
 
 // Branding Palette from "Foody" Reference
 const BRAND = {
@@ -41,7 +42,8 @@ const OrderConfirmationPage = () => {
             backgroundImage: 'radial-gradient(circle at 50% 10%, rgba(240, 147, 43, 0.05) 0%, rgba(235, 77, 75, 0.02) 80%)',
             py: 6
         }}>
-            <Container maxWidth="sm">
+            <Header />
+            <Container maxWidth="sm" sx={{ mt: { xs: 4, md: 6 } }}>
                 <Fade in={true} timeout={800}>
                     <Paper 
                         elevation={0} 
