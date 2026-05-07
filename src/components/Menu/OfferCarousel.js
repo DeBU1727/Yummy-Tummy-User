@@ -77,11 +77,11 @@ const OfferCarousel = () => {
           position: 'relative'
         }}
       >
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons - Adjusted Left/Right positioning for Mobile to prevent overflow */}
         <IconButton
           onClick={handlePrev}
           sx={{ 
-            position: 'absolute', left: { xs: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
+            position: 'absolute', left: { xs: 0, sm: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
             bgcolor: '#ffffff', color: '#2d3436', boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
             width: { xs: 40, md: 55 }, height: { xs: 40, md: 55 }, zIndex: 5,
             '&:hover': { bgcolor: '#f8f9fa', transform: 'translateY(-50%) scale(1.05)' }, transition: 'all 0.2s'
@@ -93,7 +93,7 @@ const OfferCarousel = () => {
         <IconButton
           onClick={handleNext}
           sx={{ 
-            position: 'absolute', right: { xs: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
+            position: 'absolute', right: { xs: 0, sm: -10, md: -25 }, top: '50%', transform: 'translateY(-50%)', 
             bgcolor: '#ffffff', color: '#2d3436', boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
             width: { xs: 40, md: 55 }, height: { xs: 40, md: 55 }, zIndex: 5,
             '&:hover': { bgcolor: '#f8f9fa', transform: 'translateY(-50%) scale(1.05)' }, transition: 'all 0.2s'
@@ -107,6 +107,7 @@ const OfferCarousel = () => {
           <Box
             sx={{
               display: 'flex',
+              alignItems: 'stretch', // Forces all wrappers to equal height in the horizontal row
               transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
               transform: {
                 xs: `translateX(calc(-${currentIndex} * 100%))`,
@@ -127,7 +128,7 @@ const OfferCarousel = () => {
                 const uniqueKey = `copy-${setIndex}-offer-${offer.id}`;
 
                 return (
-                  // FIXED CLIPPING ISSUE: Added pt: 8 and pb: 6 to create a "safe zone" inside the hidden overflow
+                  // FIXED CLIPPING ISSUE: Added pt: 8 and pb: 6 to create a "safe zone"
                   <Box 
                     key={uniqueKey} 
                     sx={{ 
@@ -137,7 +138,8 @@ const OfferCarousel = () => {
                         pt: 8, // Safe zone for the floating avatar (top: -50px)
                         pb: 6, // Safe zone for the bottom drop-shadow and full card height
                         display: 'flex',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        height: 'auto' // Crucial: Allows box to stretch properly in flex container
                     }}
                   >
                     <Paper
@@ -154,7 +156,7 @@ const OfferCarousel = () => {
                         alignItems: 'center',
                         textAlign: 'center',
                         flexGrow: 1, 
-                        minHeight: 220, // Fixed height for consistency
+                        height: '100%', // Swapped minHeight to 100% so they all stretch evenly
                         boxShadow: `0 15px 30px ${cardColor}60` 
                       }}
                     >
@@ -165,7 +167,9 @@ const OfferCarousel = () => {
                           width: 90, height: 90, borderRadius: '50%',
                           border: '4px solid #ffffff', bgcolor: '#ffffff',
                           boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-                          display: 'flex', justifyContent: 'center', alignItems: 'center'
+                          display: 'flex', justifyContent: 'center', alignItems: 'center',
+                          flexShrink: 0, // Prevents image squishing
+                          zIndex: 1
                         }}
                       >
                         <Avatar 
@@ -187,11 +191,12 @@ const OfferCarousel = () => {
                             mb: 0.5, 
                             mt: 1, 
                             lineHeight: 1.2,
-                            height: 44, // Fixed height for title
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            overflow: 'hidden'
+                            minHeight: 48, // Fixed minimum height area for title
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2, // Enforces 2-line maximum before truncating
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
                           }}
                         >
                           {offer.title}
@@ -216,7 +221,7 @@ const OfferCarousel = () => {
                           fontWeight: 700,
                           px: 3,
                           py: 0.8,
-                          mt: 'auto', 
+                          mt: 'auto', // Pushes button to bottom of standard-height card
                           backdropFilter: 'blur(5px)',
                           boxShadow: 'none',
                           '&:hover': { bgcolor: '#ffffff', color: cardColor, boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }

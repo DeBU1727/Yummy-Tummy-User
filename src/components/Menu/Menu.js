@@ -92,7 +92,7 @@ const Menu = () => {
         <Box key={category} sx={{ mb: { xs: 8, md: 10 } }}>
           
           {/* Category Header */}
-          <Box sx={{ textAlign: 'center', mb: 8 }}> {/* Increased bottom margin for breathing room */}
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
             <Typography 
               variant="h3" 
               component="h2" 
@@ -118,26 +118,23 @@ const Menu = () => {
             </Typography>
           </Box>
 
-          <Grid container spacing={{ xs: 4, md: 6 }}>
+          {/* Grid Container */}
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="stretch">
             {items.map((item, index) => {
               const imageSrc = item.image?.startsWith('http') 
                 ? item.image 
                 : (item.image?.startsWith('/uploads') ? `${API_BASE_URL}${item.image}` : item.image);
               
               return (
-                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+                // Added display: 'flex' here so the grid item forces its children to stretch evenly
+                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} sx={{ display: 'flex' }}>
                   <Fade in={true} timeout={600 + (index * 150)}>
-                    {/* FIXED CLIPPING ISSUE:
-                      Wrapped the Card in a Box with pt: 6 and pb: 4. 
-                      This ensures the floating top avatar and the bottom drop shadows
-                      have plenty of physical space inside the Grid item to render without being truncated.
-                    */}
-                    <Box sx={{ pt: 6, pb: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    {/* Width 100% ensures it fills the grid column */}
+                    <Box sx={{ pt: 6, pb: 2, width: '100%', display: 'flex', flexDirection: 'column' }}>
                       <Card 
                         elevation={0}
                         sx={{ 
-                          height: '100%', 
-                          minHeight: { xs: 420, sm: 450 }, // Fixed height for consistency
+                          flexGrow: 1, // Replaces minHeight, forces card to fill available height evenly
                           display: 'flex', 
                           flexDirection: 'column',
                           borderRadius: 6,
@@ -170,14 +167,16 @@ const Menu = () => {
                               boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
                               transition: 'all 0.4s ease',
                               p: 0.5,
-                              zIndex: 1
+                              zIndex: 1,
+                              flexShrink: 0 // Prevents image squishing on small screens
                             }}
                           >
                             <Avatar 
                               src={imageSrc} 
                               alt={item.name}
                               sx={{ width: '100%', height: '100%', bgcolor: 'transparent' }}
-                              imgProps={{ sx: { objectFit: 'contain' } }}
+                              // Changed to 'cover' for uniform circular images without letterboxing
+                              imgProps={{ sx: { objectFit: 'cover' } }}
                             >
                                {!imageSrc && <RestaurantMenuIcon sx={{ color: '#ccc', fontSize: 50 }} />}
                             </Avatar>
@@ -185,39 +184,46 @@ const Menu = () => {
                         </Box>
  
                         <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1, display: 'flex', flexDirection: 'column' }}>
-                          <Typography 
-                            gutterBottom 
-                            variant="h6" 
-                            component="div" 
-                            sx={{ 
-                              fontWeight: 900, 
-                              color: BRAND.text, 
-                              lineHeight: 1.2, 
-                              mb: 1,
-                              height: 50, // Fixed height for title
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              overflow: 'hidden'
-                            }}
-                          >
-                            {item.name}
-                          </Typography>
-                          <Typography 
-                            variant="body2" 
-                            color="text.secondary" 
-                            sx={{ 
-                              mb: 2, 
-                              height: 40, // Fixed height for description
-                              overflow: 'hidden', 
-                              display: '-webkit-box', 
-                              WebkitLineClamp: 2, 
-                              WebkitBoxOrient: 'vertical',
-                              lineHeight: 1.4
-                            }}
-                          >
-                            {item.description || 'Delicious & freshly prepared with the finest ingredients.'}
-                          </Typography>
+                          
+                          {/* Title Area - Fixed space with line clamping to prevent vertical overflow */}
+                          <Box sx={{ minHeight: 56, mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Typography 
+                              variant="h6" 
+                              component="div" 
+                              sx={{ 
+                                fontWeight: 900, 
+                                color: BRAND.text, 
+                                lineHeight: 1.2,
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis'
+                              }}
+                            >
+                              {item.name}
+                            </Typography>
+                          </Box>
+
+                          {/* Description Area - Fixed space with strict clamping */}
+                          <Box sx={{ minHeight: 40, mb: 2 }}>
+                            <Typography 
+                              variant="body2" 
+                              color="text.secondary" 
+                              sx={{ 
+                                display: '-webkit-box', 
+                                WebkitLineClamp: 2, 
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                lineHeight: 1.4
+                              }}
+                            >
+                              {item.description || 'Delicious & freshly prepared with the finest ingredients.'}
+                            </Typography>
+                          </Box>
+                          
+                          {/* Price Area - Pushed to bottom via mt: auto */}
                           <Box sx={{ mt: 'auto' }}>
                             <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary }}>
                               ₹{item.price.toFixed(2)}

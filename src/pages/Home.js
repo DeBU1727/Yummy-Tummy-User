@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { Box, Container, Typography, Grid, Stack, Button, Fade, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Container, Typography, Grid, Stack, Button, Fade } from '@mui/material';
 import Header from '../components/Layout/Header';
 import Menu from '../components/Menu/Menu';
 import OfferCarousel from '../components/Menu/OfferCarousel';
@@ -11,7 +11,6 @@ import { BRAND } from '../theme';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const navigate = useNavigate(); 
 
@@ -94,24 +93,35 @@ const Home = () => {
             </Fade>
           </Grid>
           
-          {/* Hero Image Section - Simplified for better flow */}
+          {/* Hero Image Section - Fixed for proper responsive scaling */}
           <Grid item xs={12} md={5} lg={6} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             <Box 
               sx={{ 
                 width: '100%', 
-                maxWidth: 500, 
-                height: 500, 
+                maxWidth: { xs: 300, lg: 450 }, 
+                aspectRatio: '1 / 1', // Ensures a perfect circle regardless of screen width
                 bgcolor: 'rgba(235, 77, 75, 0.05)', 
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                position: 'relative'
+                position: 'relative',
+                mx: 'auto'
               }}
             >
-              {/* This would be the main hero image */}
-              <Box sx={{ width: '85%', height: '85%', borderRadius: '50%', bgcolor: 'rgba(240, 147, 43, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                 <Typography variant="h1" sx={{ fontSize: '10rem', opacity: 0.1 }}>🥗</Typography>
+              {/* Inner graphic/image circle */}
+              <Box 
+                sx={{ 
+                  width: '85%', 
+                  height: '85%', 
+                  borderRadius: '50%', 
+                  bgcolor: 'rgba(240, 147, 43, 0.1)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center' 
+                }}
+              >
+                 <Typography variant="h1" sx={{ fontSize: { md: '6rem', lg: '8rem' }, opacity: 0.1 }}>🥗</Typography>
               </Box>
             </Box>
           </Grid>
@@ -127,7 +137,8 @@ const Home = () => {
       <Container 
         maxWidth="lg" 
         sx={{ 
-          pb: 10
+          pb: 10,
+          px: { xs: 2, sm: 3, md: 4 } // Added consistent padding for smaller screens
         }}
       >
         <Menu />
@@ -136,4 +147,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home;
