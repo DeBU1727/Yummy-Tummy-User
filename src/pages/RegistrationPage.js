@@ -14,14 +14,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-// Branding Palette from "Foody" Reference
-const BRAND = {
-    primary: '#eb4d4b',    // Coral Red
-    secondary: '#f0932b',  // Golden Orange
-    bg: '#fffaf0',         // Soft Cream
-    surface: '#ffffff',
-    text: '#2d3436'
-};
+import { BRAND } from '../theme';
 
 const RegistrationPage = () => {
     const dispatch = useDispatch();

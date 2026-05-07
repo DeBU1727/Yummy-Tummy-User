@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Box, Container, Typography, TextField, Button, Grid, 
-  Paper, Alert, Stack, Fade, Avatar 
+  Paper, Alert, Stack, Fade, Avatar, useTheme, useMediaQuery
 } from '@mui/material';
 import Header from '../components/Layout/Header';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
@@ -9,17 +9,13 @@ import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import api from '../store/api';
-
-// Branding Palette matching the "Foody" Reference
-const BRAND = {
-  primary: '#eb4d4b',    // Coral Red
-  secondary: '#f0932b',  // Golden Orange
-  bg: '#fffaf0',         // Soft Cream
-  surface: '#ffffff',
-  text: '#2d3436'
-};
+import { BRAND } from '../theme';
 
 const HelpCenter = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isExtraSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
   const [status, setStatus] = useState({ type: '', msg: '' });
   const [loading, setLoading] = useState(false);
@@ -49,57 +45,57 @@ const HelpCenter = () => {
       <Header />
       <Container maxWidth="lg" sx={{ pt: { xs: 4, md: 8 } }}>
         <Fade in={true} timeout={800}>
-          <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
+          <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
             
             {/* Left Info Section */}
             <Grid item xs={12} md={5}>
-              <Stack spacing={4}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Stack spacing={isMobile ? 3 : 4} alignItems={isMobile ? 'center' : 'flex-start'} textAlign={isMobile ? 'center' : 'left'}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexDirection: isExtraSmall ? 'column' : 'row' }}>
                   <Avatar 
                     sx={{ 
                       bgcolor: BRAND.primary, 
-                      width: 60, 
-                      height: 60, 
+                      width: isExtraSmall ? 50 : 60, 
+                      height: isExtraSmall ? 50 : 60, 
                       boxShadow: '0 8px 20px rgba(235, 77, 75, 0.3)' 
                     }}
                   >
-                    <SupportAgentIcon sx={{ fontSize: 32 }} />
+                    <SupportAgentIcon sx={{ fontSize: isExtraSmall ? 28 : 32 }} />
                   </Avatar>
-                  <Typography variant="h3" sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-0.5px' }}>
+                  <Typography variant={isMobile ? "h4" : "h3"} sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-0.5px' }}>
                     Help <span style={{ color: BRAND.primary }}>Center</span>
                   </Typography>
                 </Box>
                 
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 500 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: isMobile ? '1rem' : '1.1rem', fontWeight: 500, maxWidth: isMobile ? '100%' : 450 }}>
                   Have questions about your order, our menu, or anything else? We're here to help! Fill out the form, and our support team will get back to you within 24 hours.
                 </Typography>
                 
-                <Stack spacing={3} sx={{ mt: 2 }}>
-                  <Stack direction="row" spacing={2} alignItems="center">
+                <Stack spacing={3} sx={{ mt: 2, width: '100%', maxWidth: isMobile ? 400 : 'none' }}>
+                  <Stack direction="row" spacing={2} alignItems="center" justifyContent={isMobile ? 'center' : 'flex-start'}>
                     <Avatar sx={{ bgcolor: 'rgba(240, 147, 43, 0.1)', color: BRAND.secondary, width: 45, height: 45 }}>
                       <AccessTimeOutlinedIcon />
                     </Avatar>
-                    <Box>
+                    <Box textAlign="left">
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Working Hours</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>Monday - Sunday: 10:00 AM - 11:00 PM</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>Mon - Sun: 10:00 AM - 11:00 PM</Typography>
                     </Box>
                   </Stack>
                   
-                  <Stack direction="row" spacing={2} alignItems="center">
+                  <Stack direction="row" spacing={2} alignItems="center" justifyContent={isMobile ? 'center' : 'flex-start'}>
                     <Avatar sx={{ bgcolor: 'rgba(240, 147, 43, 0.1)', color: BRAND.secondary, width: 45, height: 45 }}>
                       <PhoneOutlinedIcon />
                     </Avatar>
-                    <Box>
+                    <Box textAlign="left">
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Phone Support</Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>+91 7319001727</Typography>
                     </Box>
                   </Stack>
-
-                  <Stack direction="row" spacing={2} alignItems="center">
+ 
+                  <Stack direction="row" spacing={2} alignItems="center" justifyContent={isMobile ? 'center' : 'flex-start'}>
                     <Avatar sx={{ bgcolor: 'rgba(240, 147, 43, 0.1)', color: BRAND.secondary, width: 45, height: 45 }}>
                       <EmailOutlinedIcon />
                     </Avatar>
-                    <Box>
+                    <Box textAlign="left">
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Email Support</Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>gdebanshu1727@gmail.com</Typography>
                     </Box>
@@ -107,7 +103,7 @@ const HelpCenter = () => {
                 </Stack>
               </Stack>
             </Grid>
-
+ 
             {/* Right Form Section */}
             <Grid item xs={12} md={7}>
               <Paper 
@@ -120,7 +116,7 @@ const HelpCenter = () => {
                   bgcolor: BRAND.surface
                 }}
               >
-                <Typography variant="h5" sx={{ fontWeight: 900, mb: 4, color: BRAND.text }}>
+                <Typography variant="h5" sx={{ fontWeight: 900, mb: 4, color: BRAND.text, textAlign: isMobile ? 'center' : 'left' }}>
                   Send us a Message
                 </Typography>
                 
@@ -138,7 +134,7 @@ const HelpCenter = () => {
                     {status.msg}
                   </Alert>
                 )}
-
+ 
                 <form onSubmit={handleSubmit}>
                   <Stack spacing={3}>
                     <TextField
@@ -221,4 +217,4 @@ const HelpCenter = () => {
   );
 };
 
-export default HelpCenter;
+export default HelpCenter;

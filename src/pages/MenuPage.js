@@ -61,31 +61,23 @@ const MenuPage = () => {
         </Fade>
       </Container>
 
-      {/* UI ADJUSTMENT: STRICT WIDTH LOCK ONLY */}
+      {/* RESPONSIVE MENU GRID */}
       <Box 
         sx={{
-          // Target the inner Material-UI Cards to enforce a strict width
           '& .MuiCard-root': {
-            width: '320px !important', // Locks the width
-            maxWidth: '100%',          // Ensures it fits on mobile screens
-            margin: '0 auto',          // Centers the card in its grid slot
-            // Notice: No height restrictions here, allowing it to behave naturally
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
           },
-
-          // Ensure images conform to the new fixed width without changing their set height
           '& .MuiCardMedia-root, & img': {
-            width: '100% !important',  
-            objectFit: 'cover',        // Prevents image squishing horizontally
+            width: '100%',  
+            objectFit: 'cover',
           },
-
-          // Prevent long titles from stretching the card width
           '& .MuiTypography-h6, & .MuiTypography-h5, & .MuiTypography-subtitle1': {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
           },
-
-          // Force multiline body text to wrap properly instead of pushing the width out
           '& .MuiTypography-body1, & .MuiTypography-body2': {
             overflowWrap: 'break-word',
             wordWrap: 'break-word',

@@ -4,14 +4,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link as RouterLink } from 'react-router-dom';
-
-// Branding Palette matching the Header
-const BRAND = {
-  primary: '#eb4d4b',    // Coral Red
-  secondary: '#f0932b',  // Golden Orange
-  bg: '#fffaf0',         // Soft Cream
-  text: '#2d3436'
-};
+import { BRAND } from '../../theme';
 
 const Footer = () => {
   return (
@@ -22,15 +15,15 @@ const Footer = () => {
         borderTop: '1px solid rgba(0,0,0,0.05)',
         pt: { xs: 6, md: 10 },
         pb: 4,
-        mt: 'auto' // Pushes footer to bottom
+        mt: 'auto' 
       }}
     >
       <Container maxWidth="xl">
         <Grid container spacing={{ xs: 4, md: 6 }} sx={{ mb: { xs: 4, md: 8 } }}>
           
           {/* Brand Section */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Stack spacing={3}>
+          <Grid item xs={12} md={4}>
+            <Stack spacing={3} alignItems={{ xs: 'center', md: 'flex-start' }} textAlign={{ xs: 'center', md: 'left' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Box sx={{ bgcolor: BRAND.primary, p: 1, borderRadius: 2, display: 'flex' }}>
                   <FastfoodIcon sx={{ color: 'white' }} />
@@ -76,38 +69,38 @@ const Footer = () => {
               </Stack>
             </Stack>
           </Grid>
-
+ 
           {/* Quick Links / Company */}
-          <Grid size={{ xs: 6, md: 2 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text }}>
+          <Grid item xs={6} md={2}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text, textAlign: { xs: 'center', md: 'left' } }}>
               Company
             </Typography>
-            <Stack spacing={2}>
+            <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Link component={RouterLink} to="/about" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>About Us</Link>
               <Link component={RouterLink} to="/team" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Our Team</Link>
               <Link component={RouterLink} to="/careers" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Careers</Link>
               <Link component={RouterLink} to="/contact" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Contact</Link>
             </Stack>
           </Grid>
-
+ 
           {/* Support */}
-          <Grid size={{ xs: 6, md: 2 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text }}>
+          <Grid item xs={6} md={2}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text, textAlign: { xs: 'center', md: 'left' } }}>
               Support
             </Typography>
-            <Stack spacing={2}>
+            <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
               <Link component={RouterLink} to="/help-center" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Help Center</Link>
               <Link component={RouterLink} to="/terms" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Terms of Service</Link>
               <Link component={RouterLink} to="/privacy" underline="none" sx={{ color: 'text.secondary', fontWeight: 600, transition: 'color 0.2s', '&:hover': { color: BRAND.primary } }}>Privacy Policy</Link>
             </Stack>
           </Grid>
-
+ 
           {/* Contact Info */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text }}>
+          <Grid item xs={12} md={4}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 3, textTransform: 'uppercase', color: BRAND.text, textAlign: { xs: 'center', md: 'left' } }}>
               Contact Us
             </Typography>
-            <Stack spacing={2}>
+            <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }} textAlign={{ xs: 'center', md: 'left' }}>
               <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500 }}>
                 <strong style={{ color: BRAND.text }}>Address:</strong> 123 Foodie Street, Kolkata, Kolkata-700091
               </Typography>
@@ -120,11 +113,11 @@ const Footer = () => {
             </Stack>
           </Grid>
         </Grid>
-
+ 
         <Divider sx={{ mb: 4, borderStyle: 'dashed' }} />
-
+ 
         {/* Copyright Bottom Bar */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
           <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
             © 2026 Foody Inc. All rights reserved.
           </Typography>

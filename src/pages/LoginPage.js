@@ -14,14 +14,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-// Branding Palette from Reference
-const BRAND = {
-    primary: '#eb4d4b',    // Coral Red
-    secondary: '#f0932b',  // Golden Orange
-    bg: '#fffaf0',         // Soft Cream
-    surface: '#ffffff',
-    text: '#2d3436'
-};
+import { BRAND } from '../theme';
 
 const LoginPage = () => {
     const dispatch = useDispatch();
