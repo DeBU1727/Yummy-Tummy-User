@@ -135,24 +135,23 @@ const Menu = () => {
                     <Box sx={{ 
                       pt: 6, 
                       pb: 4, 
-                      height: '100%', 
                       display: 'flex', 
-                      flexDirection: 'column',
-                      alignItems: 'center' // Center the fixed-width card
+                      justifyContent: 'center', // Center the fixed-width card
+                      width: '100%'
                     }}>
                       <Card 
                         elevation={0}
                         sx={{ 
-                          width: '100%',
-                          maxWidth: { xs: 320, sm: 'none' }, // Bounded width for mobile
-                          height: 460, // ABSOLUTE FIXED HEIGHT
+                          width: { xs: 280, sm: 280, md: 280 }, // ABSOLUTE FIXED WIDTH
+                          height: 480, // ABSOLUTE FIXED HEIGHT (slightly increased to be safe)
                           display: 'flex', 
                           flexDirection: 'column',
-                          borderRadius: 6,
+                          borderRadius: 8,
                           boxShadow: '0 15px 35px rgba(0,0,0,0.06)', 
                           border: '1px solid rgba(0,0,0,0.02)',
                           bgcolor: BRAND.surface,
                           overflow: 'visible', 
+                          position: 'relative',
                           transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                           '&:hover': {
                             transform: 'translateY(-10px)',
