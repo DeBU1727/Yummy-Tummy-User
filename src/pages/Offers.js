@@ -46,26 +46,25 @@ const Offers = () => {
       
       <Container maxWidth="lg" sx={{ mt: { xs: 4, md: 8 } }}>
         <Fade in={true} timeout={800}>
-          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
+          <Box sx={{ textAlign: 'center', mb: 6 }}>
             <Typography 
               variant="h6" 
-              sx={{ color: BRAND.primary, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase', mb: 1, fontSize: { xs: '0.8rem', md: '1rem' } }}
+              sx={{ color: BRAND.primary, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase', mb: 1 }}
             >
               Special Deals
             </Typography>
             <Typography 
               variant="h3" 
               component="h1" 
-              sx={{ fontWeight: 900, color: BRAND.text, mb: 2, fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}
+              sx={{ fontWeight: 900, color: BRAND.text, mb: 2 }}
             >
               Exclusive <span style={{ color: BRAND.primary }}>Offers</span>
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 500, mx: 'auto', fontSize: { xs: '0.9rem', md: '1rem' } }}>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 500, mx: 'auto' }}>
               Grab the best deals before they're gone! Treat yourself to delicious meals at unbeatable prices.
             </Typography>
           </Box>
         </Fade>
-
 
         {loading ? (
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 8 }}>
@@ -114,12 +113,12 @@ const Offers = () => {
                       <Box 
                         sx={{ 
                           position: 'absolute', 
-                          top: -10, 
-                          right: -10, 
+                          top: -15, 
+                          right: -15, 
                           bgcolor: BRAND.secondary, 
                           color: '#fff',
-                          width: { xs: 60, md: 75 }, 
-                          height: { xs: 60, md: 75 }, 
+                          width: 75, 
+                          height: 75, 
                           borderRadius: '50%',
                           display: 'flex',
                           flexDirection: 'column',
@@ -130,11 +129,10 @@ const Offers = () => {
                           transform: 'rotate(10deg)'
                         }}
                       >
-                        <Typography variant="h6" sx={{ fontWeight: 900, lineHeight: 1, fontSize: { xs: '1rem', md: '1.25rem' } }}>{offer.discountPercentage}%</Typography>
-                        <Typography variant="caption" sx={{ fontWeight: 800, fontSize: '0.6rem' }}>OFF</Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 900, lineHeight: 1 }}>{offer.discountPercentage}%</Typography>
+                        <Typography variant="caption" sx={{ fontWeight: 800, fontSize: '0.7rem' }}>OFF</Typography>
                       </Box>
                     )}
-
 
                     <Box sx={{ overflow: 'hidden', borderRadius: '24px 24px 0 0' }}>
                       {offer.imageUrl ? (

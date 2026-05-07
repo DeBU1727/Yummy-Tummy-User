@@ -133,26 +133,26 @@ const PaymentPage = () => {
                 <Fade in={true} timeout={800}>
                     <Box>
                         {/* Page Header */}
-                        <Stack alignItems="center" textAlign="center" sx={{ mb: { xs: 4, md: 6 } }}>
+                        <Stack alignItems="center" textAlign="center" sx={{ mb: 6 }}>
                             <Avatar 
                                 sx={{ 
                                     bgcolor: BRAND.primary, 
-                                    width: { xs: 50, md: 60 }, 
-                                    height: { xs: 50, md: 60 }, 
+                                    width: 60, 
+                                    height: 60, 
                                     mb: 2, 
                                     boxShadow: '0 8px 20px rgba(235, 77, 75, 0.3)' 
                                 }}
                             >
-                                <PaymentIcon sx={{ fontSize: { xs: 24, md: 30 } }} />
+                                <PaymentIcon sx={{ fontSize: 30 }} />
                             </Avatar>
                             <Typography 
                                 variant="h3" 
                                 component="h1" 
-                                sx={{ fontWeight: 900, color: BRAND.text, mb: 1, letterSpacing: '-0.5px', fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.5rem' } }}
+                                sx={{ fontWeight: 900, color: BRAND.text, mb: 1, letterSpacing: '-0.5px', fontSize: { xs: '2rem', md: '2.5rem' } }}
                             >
                                 Checkout & <span style={{ color: BRAND.primary }}>Payment</span>
                             </Typography>
-                            <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.9rem', md: '1rem' } }}>
+                            <Typography variant="body1" color="text.secondary">
                                 Review your delicious items and complete your order.
                             </Typography>
                         </Stack>
@@ -174,7 +174,7 @@ const PaymentPage = () => {
                                     elevation={0} 
                                     sx={{ 
                                         p: { xs: 3, md: 4 }, 
-                                        borderRadius: { xs: 6, md: 8 }, 
+                                        borderRadius: 8, 
                                         backgroundColor: BRAND.surface,
                                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.06)',
                                         border: '1px solid rgba(0,0,0,0.03)'
@@ -182,7 +182,7 @@ const PaymentPage = () => {
                                 >
                                     <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 3 }}>
                                         <ReceiptLongIcon sx={{ color: BRAND.secondary }} />
-                                        <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.text, fontSize: { xs: '1.25rem', md: '1.5rem' } }}>
+                                        <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.text }}>
                                             Order Summary
                                         </Typography>
                                     </Stack>
@@ -190,14 +190,14 @@ const PaymentPage = () => {
                                     
                                     <Box sx={{ maxHeight: '300px', overflowY: 'auto', pr: 1, mb: 3 }}>
                                         {cartItems.map((item) => (
-                                            <Box key={item.id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, gap: 2 }}>
+                                            <Box key={item.id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                                                 <Box>
-                                                    <Typography variant="subtitle1" sx={{ fontWeight: 800, color: BRAND.text, fontSize: { xs: '0.9rem', md: '1rem' } }}>{item.name}</Typography>
+                                                    <Typography variant="subtitle1" sx={{ fontWeight: 800, color: BRAND.text }}>{item.name}</Typography>
                                                     <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
                                                         <span style={{ color: BRAND.secondary }}>{item.quantity}x</span> @ ₹{item.price.toFixed(2)}
                                                     </Typography>
                                                 </Box>
-                                                <Typography variant="h6" sx={{ fontWeight: 900, color: BRAND.primary, fontSize: { xs: '1rem', md: '1.25rem' } }}>
+                                                <Typography variant="h6" sx={{ fontWeight: 900, color: BRAND.primary }}>
                                                     ₹{(item.price * item.quantity).toFixed(2)}
                                                 </Typography>
                                             </Box>
@@ -207,7 +207,7 @@ const PaymentPage = () => {
                                     <Divider sx={{ my: 3, borderStyle: 'dashed' }} />
                                     
                                     {/* Coupon Section */}
-                                    <Box sx={{ display: 'flex', gap: 1.5, mb: 4, flexDirection: { xs: 'column', sm: 'row' } }}>
+                                    <Box sx={{ display: 'flex', gap: 1.5, mb: 4 }}>
                                         <TextField
                                             label="Promo / Coupon Code"
                                             variant="filled"
@@ -230,7 +230,6 @@ const PaymentPage = () => {
                                                 variant="outlined" 
                                                 color="error" 
                                                 onClick={handleRemoveCoupon}
-                                                fullWidth={{ xs: true, sm: false }}
                                                 sx={{ borderRadius: 4, px: 3, fontWeight: 800 }}
                                             >
                                                 Remove
@@ -240,11 +239,9 @@ const PaymentPage = () => {
                                                 variant="contained" 
                                                 onClick={handleApplyCoupon}
                                                 disabled={couponLoading || !couponCode.trim()}
-                                                fullWidth={{ xs: true, sm: false }}
                                                 sx={{ 
                                                     borderRadius: 4, 
                                                     px: 4, 
-                                                    py: { xs: 1.5, sm: 0 },
                                                     fontWeight: 800, 
                                                     bgcolor: BRAND.secondary,
                                                     boxShadow: '0 4px 15px rgba(240, 147, 43, 0.3)',
@@ -255,37 +252,36 @@ const PaymentPage = () => {
                                             </Button>
                                         )}
                                     </Box>
- 
-                                     {/* Subtotals */}
-                                     <Box sx={{ p: { xs: 2, md: 3 }, bgcolor: '#fff9ef', borderRadius: 5, border: `2px dashed ${BRAND.secondary}40` }}>
-                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
-                                             <Typography color="text.secondary" sx={{ fontWeight: 600, fontSize: { xs: '0.85rem', md: '1rem' } }}>Items Subtotal</Typography>
-                                             <Typography sx={{ fontWeight: 700, fontSize: { xs: '0.85rem', md: '1rem' } }}>₹{subtotal.toFixed(2)}</Typography>
-                                         </Box>
-                                         
-                                         {appliedCoupon && (
-                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5, color: '#15803d' }}>
-                                                 <Typography sx={{ fontWeight: 600, fontSize: { xs: '0.85rem', md: '1rem' } }}>Discount ({appliedCoupon.discountPercentage}%)</Typography>
-                                                 <Typography sx={{ fontWeight: 800, fontSize: { xs: '0.85rem', md: '1rem' } }}>- ₹{discountAmount.toFixed(2)}</Typography>
-                                             </Box>
-                                         )}
- 
-                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                                             <Typography color="text.secondary" sx={{ fontWeight: 600, fontSize: { xs: '0.85rem', md: '1rem' } }}>GST (18%)</Typography>
-                                             <Typography sx={{ fontWeight: 700, fontSize: { xs: '0.85rem', md: '1rem' } }}>₹{gstAmount.toFixed(2)}</Typography>
-                                         </Box>
-                                         
-                                         <Divider sx={{ my: 2, borderStyle: 'dashed' }} />
-                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-                                             <Typography variant="h6" sx={{ fontWeight: 900, fontSize: { xs: '1.1rem', md: '1.25rem' } }}>Total Payable</Typography>
-                                             <Typography variant="h4" color="primary" sx={{ fontWeight: 900, fontSize: { xs: '1.75rem', md: '2.125rem' } }}>
-                                                 ₹{finalTotal.toFixed(2)}
-                                             </Typography>
-                                         </Box>
-                                     </Box>
-                                 </Paper>
-                             </Grid>
 
+                                    {/* Subtotals */}
+                                    <Box sx={{ p: 3, bgcolor: '#fff9ef', borderRadius: 5, border: `2px dashed ${BRAND.secondary}40` }}>
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
+                                            <Typography color="text.secondary" sx={{ fontWeight: 600 }}>Items Subtotal</Typography>
+                                            <Typography sx={{ fontWeight: 700 }}>₹{subtotal.toFixed(2)}</Typography>
+                                        </Box>
+                                        
+                                        {appliedCoupon && (
+                                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5, color: '#15803d' }}>
+                                                <Typography sx={{ fontWeight: 600 }}>Discount ({appliedCoupon.discountPercentage}%)</Typography>
+                                                <Typography sx={{ fontWeight: 800 }}>- ₹{discountAmount.toFixed(2)}</Typography>
+                                            </Box>
+                                        )}
+
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                                            <Typography color="text.secondary" sx={{ fontWeight: 600 }}>GST (18%)</Typography>
+                                            <Typography sx={{ fontWeight: 700 }}>₹{gstAmount.toFixed(2)}</Typography>
+                                        </Box>
+                                        
+                                        <Divider sx={{ my: 2, borderStyle: 'dashed' }} />
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <Typography variant="h6" sx={{ fontWeight: 900 }}>Total Payable</Typography>
+                                            <Typography variant="h4" color="primary" sx={{ fontWeight: 900 }}>
+                                                ₹{finalTotal.toFixed(2)}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Paper>
+                            </Grid>
 
                             {/* Payment Options (Right Column) */}
                             <Grid item xs={12} md={5}>
@@ -293,14 +289,14 @@ const PaymentPage = () => {
                                     elevation={0} 
                                     sx={{ 
                                         p: { xs: 3, md: 4 }, 
-                                        borderRadius: { xs: 6, md: 8 }, 
+                                        borderRadius: 8, 
                                         backgroundColor: BRAND.surface,
                                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.06)',
                                         border: '1px solid rgba(0,0,0,0.03)',
                                         mb: 3
                                     }}
                                 >
-                                    <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.text, mb: 3, fontSize: { xs: '1.25rem', md: '1.5rem' } }}>
+                                    <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.text, mb: 3 }}>
                                         Payment Method
                                     </Typography>
                                     
@@ -325,23 +321,23 @@ const PaymentPage = () => {
                                                     value={method} 
                                                     control={<Radio sx={{ color: BRAND.primary, '&.Mui-checked': { color: BRAND.primary } }} />} 
                                                     label={
-                                                        <Typography sx={{ fontWeight: paymentMethod === method ? 800 : 600, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+                                                        <Typography sx={{ fontWeight: paymentMethod === method ? 800 : 600 }}>
                                                             {method === 'CASH' ? 'Cash on Delivery' : method === 'CARD' ? 'Credit/Debit Card' : 'Online Payment'}
                                                         </Typography>
                                                     }
-                                                    sx={{ width: '100%', m: 0, p: { xs: 1, md: 1.5 } }}
+                                                    sx={{ width: '100%', m: 0, p: 1.5 }}
                                                 />
                                             </Paper>
                                         ))}
                                     </RadioGroup>
 
                                     {orderType === 'DELIVERY' && deliveryDetails && (
-                                        <Box sx={{ mb: 4, p: { xs: 2, md: 2.5 }, bgcolor: '#f8f9fa', borderRadius: 4 }}>
+                                        <Box sx={{ mb: 4, p: 2.5, bgcolor: '#f8f9fa', borderRadius: 4 }}>
                                             <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.secondary, mb: 1, letterSpacing: 1 }}>
                                                 DELIVERING TO:
                                             </Typography>
-                                            <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, fontSize: { xs: '0.85rem', md: '1rem' } }}>{deliveryDetails.address}</Typography>
-                                            <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem' }}>Phone: {deliveryDetails.contactNumber}</Typography>
+                                            <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5 }}>{deliveryDetails.address}</Typography>
+                                            <Typography variant="body2" color="text.secondary">Phone: {deliveryDetails.contactNumber}</Typography>
                                         </Box>
                                     )}
 
@@ -352,11 +348,11 @@ const PaymentPage = () => {
                                         onClick={handlePlaceOrder}
                                         disabled={loading}
                                         sx={{ 
-                                            py: { xs: 1.8, md: 2 }, 
+                                            py: 2, 
                                             fontWeight: 900, 
                                             mb: 2,
                                             borderRadius: '30px',
-                                            fontSize: { xs: '1rem', md: '1.1rem' },
+                                            fontSize: '1.1rem',
                                             textTransform: 'none',
                                             bgcolor: BRAND.primary,
                                             boxShadow: '0 10px 20px rgba(235, 77, 75, 0.3)',
@@ -386,7 +382,6 @@ const PaymentPage = () => {
                                     </Button>
                                 </Paper>
                             </Grid>
-
                         </Grid>
                     </Box>
                 </Fade>

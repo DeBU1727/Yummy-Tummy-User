@@ -136,20 +136,18 @@ const AdminOffers = () => {
         {/* Offers Table */}
         <Fade in timeout={800}>
           <TableContainer component={Paper} sx={{ 
-            borderRadius: { xs: 4, md: 8 }, 
+            borderRadius: 8, 
             boxShadow: '0 20px 40px rgba(0,0,0,0.04)',
             border: '1px solid rgba(0,0,0,0.02)',
-            overflowX: 'auto', // Enable horizontal scroll on mobile
-            '&::-webkit-scrollbar': { height: 6 },
-            '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(0,0,0,0.05)', borderRadius: 10 }
+            overflow: 'hidden'
           }}>
-            <Table sx={{ minWidth: { xs: 600, md: '100%' } }}>
+            <Table>
               <TableHead sx={{ bgcolor: BRAND.surface }}>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>CAMPAIGN TITLE</TableCell>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>COUPON CODE</TableCell>
-                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>DISCOUNT</TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', pr: 4, whiteSpace: 'nowrap' }}>ACTIONS</TableCell>
+                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>CAMPAIGN TITLE</TableCell>
+                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>COUPON CODE</TableCell>
+                  <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>DISCOUNT</TableCell>
+                  <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', pr: 4 }}>ACTIONS</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody sx={{ bgcolor: BRAND.surface }}>
@@ -181,7 +179,6 @@ const AdminOffers = () => {
                           sx={{ 
                             fontWeight: 900, 
                             letterSpacing: 1,
-                            fontSize: '0.7rem',
                             bgcolor: 'rgba(240, 147, 43, 0.1)', 
                             color: BRAND.secondary,
                             border: `1px dashed ${BRAND.secondary}`
@@ -189,11 +186,11 @@ const AdminOffers = () => {
                         />
                       </TableCell>
                       <TableCell>
-                        <Typography sx={{ fontWeight: 900, color: BRAND.primary, whiteSpace: 'nowrap' }}>
+                        <Typography sx={{ fontWeight: 900, color: BRAND.primary }}>
                           {offer.discountPercentage}% OFF
                         </Typography>
                       </TableCell>
-                      <TableCell align="right" sx={{ pr: 3, whiteSpace: 'nowrap' }}>
+                      <TableCell align="right" sx={{ pr: 3 }}>
                         <Tooltip title="Edit Campaign">
                           <IconButton 
                             onClick={() => handleOpen(offer)} 
@@ -225,9 +222,9 @@ const AdminOffers = () => {
           onClose={handleClose} 
           fullWidth 
           maxWidth="sm"
-          PaperProps={{ sx: { borderRadius: { xs: 4, md: 8 }, p: { xs: 1, md: 2 } } }}
+          PaperProps={{ sx: { borderRadius: 8, p: 2 } }}
         >
-          <DialogTitle sx={{ fontWeight: 900, color: BRAND.text, fontSize: { xs: '1.25rem', md: '1.5rem' } }}>
+          <DialogTitle sx={{ fontWeight: 900, color: BRAND.text, fontSize: '1.5rem' }}>
             {editingOffer ? 'Update Promotional Offer' : 'Create New Offer'}
           </DialogTitle>
           <form onSubmit={handleSubmit}>
@@ -252,7 +249,7 @@ const AdminOffers = () => {
                   value={formData.description} onChange={handleChange} required 
                   InputProps={{ disableUnderline: true, sx: { borderRadius: 4, bgcolor: '#f5f5f5' } }}
                 />
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                <Stack direction="row" spacing={2}>
                   <TextField 
                     name="discountPercentage" label="Discount %" type="number" fullWidth variant="filled"
                     value={formData.discountPercentage} onChange={handleChange} 
@@ -271,12 +268,11 @@ const AdminOffers = () => {
                 />
               </Stack>
             </DialogContent>
-            <DialogActions sx={{ p: { xs: 2, md: 4 }, justifyContent: 'space-between', flexDirection: { xs: 'column-reverse', sm: 'row' }, gap: 2 }}>
-              <Button onClick={handleClose} fullWidth={{ xs: true, sm: false }} sx={{ fontWeight: 800, color: 'text.secondary' }}>Discard</Button>
+            <DialogActions sx={{ p: 4, justifyContent: 'space-between' }}>
+              <Button onClick={handleClose} sx={{ fontWeight: 800, color: 'text.secondary' }}>Discard</Button>
               <Button 
                 type="submit" 
                 variant="contained" 
-                fullWidth={{ xs: true, sm: false }}
                 sx={{ 
                   bgcolor: BRAND.primary, 
                   borderRadius: 4, 
@@ -291,7 +287,6 @@ const AdminOffers = () => {
             </DialogActions>
           </form>
         </Dialog>
-
       </Container>
     </Box>
   );

@@ -58,19 +58,19 @@ const HelpCenter = () => {
                   <Avatar 
                     sx={{ 
                       bgcolor: BRAND.primary, 
-                      width: { xs: 50, md: 60 }, 
-                      height: { xs: 50, md: 60 }, 
+                      width: 60, 
+                      height: 60, 
                       boxShadow: '0 8px 20px rgba(235, 77, 75, 0.3)' 
                     }}
                   >
-                    <SupportAgentIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
+                    <SupportAgentIcon sx={{ fontSize: 32 }} />
                   </Avatar>
-                  <Typography variant="h3" sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-0.5px', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
+                  <Typography variant="h3" sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-0.5px' }}>
                     Help <span style={{ color: BRAND.primary }}>Center</span>
                   </Typography>
                 </Box>
                 
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: { xs: '1rem', md: '1.1rem' }, fontWeight: 500 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 500 }}>
                   Have questions about your order, our menu, or anything else? We're here to help! Fill out the form, and our support team will get back to you within 24 hours.
                 </Typography>
                 
@@ -81,7 +81,7 @@ const HelpCenter = () => {
                     </Avatar>
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Working Hours</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>10:00 AM - 11:00 PM</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>Monday - Sunday: 10:00 AM - 11:00 PM</Typography>
                     </Box>
                   </Stack>
                   
@@ -91,7 +91,7 @@ const HelpCenter = () => {
                     </Avatar>
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Phone Support</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600, wordBreak: 'break-all' }}>+91 7319001727</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>+91 7319001727</Typography>
                     </Box>
                   </Stack>
 
@@ -101,7 +101,7 @@ const HelpCenter = () => {
                     </Avatar>
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 800, color: BRAND.text }}>Email Support</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600, wordBreak: 'break-all' }}>gdebanshu1727@gmail.com</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>gdebanshu1727@gmail.com</Typography>
                     </Box>
                   </Stack>
                 </Stack>
@@ -114,7 +114,7 @@ const HelpCenter = () => {
                 elevation={0} 
                 sx={{ 
                   p: { xs: 3, sm: 5 }, 
-                  borderRadius: { xs: 4, md: 6 }, 
+                  borderRadius: 6, 
                   border: '1px solid rgba(0,0,0,0.02)', 
                   boxShadow: '0 20px 50px rgba(0,0,0,0.06)',
                   bgcolor: BRAND.surface
@@ -195,7 +195,6 @@ const HelpCenter = () => {
                       variant="contained" 
                       size="large" 
                       disabled={loading}
-                      fullWidth
                       sx={{ 
                         py: 1.8, 
                         fontWeight: 800, 
@@ -215,7 +214,6 @@ const HelpCenter = () => {
                 </form>
               </Paper>
             </Grid>
-
           </Grid>
         </Fade>
       </Container>

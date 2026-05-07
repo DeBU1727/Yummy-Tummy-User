@@ -87,27 +87,26 @@ const RegistrationPage = () => {
                     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         
                         {/* Branding Header */}
-                        <Box sx={{ mb: { xs: 3, md: 4 }, display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', justifyContent: 'center' }}>
-                            <Avatar sx={{ bgcolor: BRAND.primary, width: { xs: 40, md: 50 }, height: { xs: 40, md: 50 }, boxShadow: '0 4px 15px rgba(235, 77, 75, 0.3)' }}>
-                                <RestaurantIcon fontSize="small" />
+                        <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                            <Avatar sx={{ bgcolor: BRAND.primary, width: 50, height: 50, boxShadow: '0 4px 15px rgba(235, 77, 75, 0.3)' }}>
+                                <RestaurantIcon fontSize="medium" />
                             </Avatar>
-                            <Typography variant="h4" sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-1px', fontSize: { xs: '1.75rem', md: '2.125rem' }, textAlign: 'center' }}>
-                                Yummy-Tummy
+                            <Typography variant="h4" sx={{ fontWeight: 900, color: BRAND.text, letterSpacing: '-1px' }}>
+                                Yummy-Tummy<span style={{ color: BRAND.primary }}></span>
                             </Typography>
                         </Box>
 
                         <Paper 
                             elevation={0} 
                             sx={{ 
-                                p: { xs: 3, sm: 5 }, 
+                                p: { xs: 4, sm: 5 }, 
                                 width: '100%', 
-                                borderRadius: { xs: 6, md: 8 }, 
+                                borderRadius: 8, 
                                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)',
                                 backgroundColor: BRAND.surface,
                                 border: '1px solid rgba(0,0,0,0.02)'
                             }}
                         >
-
                             <Box sx={{ mb: 4, textAlign: 'center' }}>
                                 <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
                                     <PersonAddAlt1Icon sx={{ color: BRAND.secondary }} />

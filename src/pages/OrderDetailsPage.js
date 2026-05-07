@@ -214,8 +214,8 @@ const OrderDetailsPage = () => {
                                 )}
                             </Box>
 
-                            <Grid container spacing={3} sx={{ mb: 5 }}>
-                                <Grid item xs={12} md={6}>
+                            <Grid container spacing={4} sx={{ mb: 5 }}>
+                                <Grid item xs={12} sm={6}>
                                     <Box sx={{ p: 2.5, bgcolor: '#f8f9fa', borderRadius: 4, height: '100%' }}>
                                         <Typography variant="subtitle2" color="text.secondary" sx={{ fontWeight: 700, mb: 1.5, letterSpacing: 1 }}>ORDER INFO</Typography>
                                         <Typography variant="body1" sx={{ mb: 1, fontWeight: 600 }}>{order.customerName || 'Walk-in Guest'}</Typography>
@@ -228,14 +228,13 @@ const OrderDetailsPage = () => {
                                                     bgcolor: statusStyle.bg, 
                                                     color: statusStyle.text, 
                                                     fontWeight: 800,
-                                                    border: `1px solid ${statusStyle.border}`,
-                                                    fontSize: '0.7rem'
+                                                    border: `1px solid ${statusStyle.border}`
                                                 }} 
                                             />
                                         </Stack>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} sm={6}>
                                     <Box sx={{ p: 2.5, bgcolor: '#f8f9fa', borderRadius: 4, height: '100%' }}>
                                         <Typography variant="subtitle2" color="text.secondary" sx={{ fontWeight: 700, mb: 1.5, letterSpacing: 1 }}>DELIVERY DETAILS</Typography>
                                         <Typography variant="body1" sx={{ mb: 1, fontWeight: 600 }}>
@@ -243,7 +242,7 @@ const OrderDetailsPage = () => {
                                         </Typography>
                                         {order.orderType === 'DELIVERY' && (
                                             <>
-                                                <Typography variant="body2" sx={{ mb: 0.5, wordBreak: 'break-word' }}>{order.deliveryAddress}</Typography>
+                                                <Typography variant="body2" sx={{ mb: 0.5 }}>{order.deliveryAddress}</Typography>
                                                 <Typography variant="body2" color="text.secondary">Phone: {order.contactNumber}</Typography>
                                             </>
                                         )}
@@ -253,53 +252,44 @@ const OrderDetailsPage = () => {
 
                             <Typography variant="h6" sx={{ fontWeight: 900, mb: 2, color: BRAND.text }}>Order Summary</Typography>
                             
-                            <TableContainer 
-                                sx={{ 
-                                    mb: 5, 
-                                    borderRadius: 3, 
-                                    border: '1px solid rgba(0,0,0,0.05)',
-                                    overflowX: 'auto',
-                                    '&::-webkit-scrollbar': { height: 6 },
-                                    '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(0,0,0,0.05)', borderRadius: 10 }
-                                }}
-                            >
-                                <Table sx={{ minWidth: { xs: 500, md: '100%' } }}>
+                            <TableContainer sx={{ mb: 5, borderRadius: 3, border: '1px solid rgba(0,0,0,0.05)' }}>
+                                <Table>
                                     <TableHead>
                                         <TableRow sx={{ bgcolor: '#f8f9fa' }}>
-                                            <TableCell sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>ITEM NAME</TableCell>
-                                            <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>QTY</TableCell>
-                                            <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>PRICE</TableCell>
-                                            <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary', whiteSpace: 'nowrap' }}>TOTAL</TableCell>
+                                            <TableCell sx={{ fontWeight: 800, color: 'text.secondary' }}>ITEM NAME</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 800, color: 'text.secondary' }}>QTY</TableCell>
+                                            <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary' }}>PRICE</TableCell>
+                                            <TableCell align="right" sx={{ fontWeight: 800, color: 'text.secondary' }}>TOTAL</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {order.items.map((item) => (
                                             <TableRow key={item.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                                <TableCell sx={{ fontWeight: 700, minWidth: 150 }}>{item.name}</TableCell>
+                                                <TableCell sx={{ fontWeight: 700 }}>{item.name}</TableCell>
                                                 <TableCell align="center" sx={{ fontWeight: 700, color: BRAND.secondary }}>{item.quantity}x</TableCell>
-                                                <TableCell align="right" sx={{ color: 'text.secondary', whiteSpace: 'nowrap' }}>₹{item.price.toFixed(2)}</TableCell>
-                                                <TableCell align="right" sx={{ fontWeight: 800, whiteSpace: 'nowrap' }}>₹{(item.price * item.quantity).toFixed(2)}</TableCell>
+                                                <TableCell align="right" sx={{ color: 'text.secondary' }}>₹{item.price.toFixed(2)}</TableCell>
+                                                <TableCell align="right" sx={{ fontWeight: 800 }}>₹{(item.price * item.quantity).toFixed(2)}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
 
-                            <Grid container spacing={3}>
-                                <Grid item xs={12} md={6}>
-                                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                            <Grid container spacing={4} alignItems="flex-end">
+                                <Grid item xs={12} sm={6}>
+                                    <Box sx={{ display: 'flex', gap: 2 }}>
                                         <Box sx={{ p: 2, border: '1px dashed #ccc', borderRadius: 3, flex: 1 }}>
                                             <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700 }}>PAYMENT STATUS</Typography>
-                                            <Typography variant="body1" sx={{ fontWeight: 800, fontSize: { xs: '0.9rem', md: '1rem' } }}>{order.paymentStatus}</Typography>
+                                            <Typography variant="body1" sx={{ fontWeight: 800 }}>{order.paymentStatus}</Typography>
                                         </Box>
                                         <Box sx={{ p: 2, border: '1px dashed #ccc', borderRadius: 3, flex: 1 }}>
                                             <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700 }}>PAYMENT METHOD</Typography>
-                                            <Typography variant="body1" sx={{ fontWeight: 800, fontSize: { xs: '0.9rem', md: '1rem' } }}>{order.paymentMethod}</Typography>
+                                            <Typography variant="body1" sx={{ fontWeight: 800 }}>{order.paymentMethod}</Typography>
                                         </Box>
-                                    </Stack>
+                                    </Box>
                                 </Grid>
                                 
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} sm={6}>
                                     <Box sx={{ p: 3, bgcolor: '#fff9ef', borderRadius: 4, border: `2px dashed ${BRAND.secondary}40` }}>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
                                             <Typography color="text.secondary" sx={{ fontWeight: 600 }}>Subtotal</Typography>
@@ -329,7 +319,6 @@ const OrderDetailsPage = () => {
                                     </Box>
                                 </Grid>
                             </Grid>
-
                         </Paper>
                     </Box>
                 </Fade>

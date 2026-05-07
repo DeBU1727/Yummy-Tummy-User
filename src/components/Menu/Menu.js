@@ -87,12 +87,12 @@ const Menu = () => {
   }
 
   return (
-    <Container sx={{ py: { xs: 2, md: 6 } }}>
+    <Container sx={{ py: { xs: 4, md: 6 } }}>
       {Object.entries(menu).map(([category, items]) => (
-        <Box key={category} sx={{ mb: { xs: 6, md: 10 } }}>
+        <Box key={category} sx={{ mb: { xs: 8, md: 10 } }}>
           
           {/* Category Header */}
-          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+          <Box sx={{ textAlign: 'center', mb: 8 }}> {/* Increased bottom margin for breathing room */}
             <Typography 
               variant="h3" 
               component="h2" 
@@ -101,7 +101,6 @@ const Menu = () => {
                 color: BRAND.text,
                 display: 'inline-block',
                 position: 'relative',
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                 '&::after': {
                   content: '""',
                   position: 'absolute',
@@ -119,7 +118,7 @@ const Menu = () => {
             </Typography>
           </Box>
 
-          <Grid container spacing={{ xs: 2, sm: 4, md: 6 }}>
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             {items.map((item, index) => {
               const imageSrc = item.image?.startsWith('http') 
                 ? item.image 
@@ -128,7 +127,12 @@ const Menu = () => {
               return (
                 <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
                   <Fade in={true} timeout={600 + (index * 150)}>
-                    <Box sx={{ pt: { xs: 5, md: 6 }, pb: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    {/* FIXED CLIPPING ISSUE:
+                      Wrapped the Card in a Box with pt: 6 and pb: 4. 
+                      This ensures the floating top avatar and the bottom drop shadows
+                      have plenty of physical space inside the Grid item to render without being truncated.
+                    */}
+                    <Box sx={{ pt: 6, pb: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
                       <Card 
                         elevation={0}
                         sx={{ 
@@ -136,10 +140,10 @@ const Menu = () => {
                           display: 'flex', 
                           flexDirection: 'column',
                           borderRadius: 6,
-                          boxShadow: '0 15px 35px rgba(0,0,0,0.06)',
+                          boxShadow: '0 15px 35px rgba(0,0,0,0.06)', // Deepened shadow
                           border: '1px solid rgba(0,0,0,0.02)',
                           bgcolor: BRAND.surface,
-                          overflow: 'visible',
+                          overflow: 'visible', // CRITICAL for floating elements
                           transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                           '&:hover': {
                             transform: 'translateY(-10px)',
@@ -151,12 +155,12 @@ const Menu = () => {
                         }}
                       >
                         {/* Floating Food Image */}
-                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: { xs: -5, md: -7 }, mb: 1 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: -7, mb: 1 }}>
                           <Box 
                             className="food-img"
                             sx={{
-                              width: { xs: 110, md: 140 },
-                              height: { xs: 110, md: 140 },
+                              width: 140,
+                              height: 140,
                               borderRadius: '50%',
                               bgcolor: BRAND.bg,
                               display: 'flex',
@@ -174,17 +178,17 @@ const Menu = () => {
                               sx={{ width: '100%', height: '100%', bgcolor: 'transparent' }}
                               imgProps={{ sx: { objectFit: 'contain' } }}
                             >
-                               {!imageSrc && <RestaurantMenuIcon sx={{ color: '#ccc', fontSize: { xs: 35, md: 50 } }} />}
+                               {!imageSrc && <RestaurantMenuIcon sx={{ color: '#ccc', fontSize: 50 }} />}
                             </Avatar>
                           </Box>
                         </Box>
 
-                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1, px: { xs: 2, md: 3 } }}>
+                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1 }}>
                           <Typography 
                             gutterBottom 
                             variant="h6" 
                             component="div" 
-                            sx={{ fontWeight: 900, color: BRAND.text, lineHeight: 1.2, mb: 1, fontSize: { xs: '1.1rem', md: '1.25rem' } }}
+                            sx={{ fontWeight: 900, color: BRAND.text, lineHeight: 1.2, mb: 1 }}
                           >
                             {item.name}
                           </Typography>
@@ -198,13 +202,12 @@ const Menu = () => {
                               display: '-webkit-box', 
                               WebkitLineClamp: 2, 
                               WebkitBoxOrient: 'vertical',
-                              lineHeight: 1.4,
-                              fontSize: { xs: '0.85rem', md: '0.875rem' }
+                              lineHeight: 1.4
                             }}
                           >
                             {item.description || 'Delicious & freshly prepared with the finest ingredients.'}
                           </Typography>
-                          <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary, fontSize: { xs: '1.25rem', md: '1.5rem' } }}>
+                          <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary }}>
                             ₹{item.price.toFixed(2)}
                           </Typography>
                         </CardContent>
@@ -212,7 +215,6 @@ const Menu = () => {
                         <CardActions sx={{ justifyContent: 'center', pb: 3, pt: 0 }}>
                           <Button 
                             variant="contained"
-                            fullWidth={false}
                             startIcon={<AddShoppingCartIcon />}
                             onClick={() => handleAddItem(item)}
                             sx={{ 
@@ -220,13 +222,12 @@ const Menu = () => {
                               color: '#fff',
                               borderRadius: '30px',
                               fontWeight: 800,
-                              px: { xs: 4, md: 3 },
+                              px: 3,
                               py: 1,
                               textTransform: 'none',
                               boxShadow: '0 8px 20px rgba(240, 147, 43, 0.3)',
                               '&:hover': { bgcolor: '#e67e22', transform: 'scale(1.05)' },
-                              transition: 'all 0.2s',
-                              width: { xs: '80%', sm: 'auto' }
+                              transition: 'all 0.2s'
                             }}
                           >
                             Add

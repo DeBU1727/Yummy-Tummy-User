@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { 
   AppBar, Toolbar, Typography, IconButton, Badge, ToggleButtonGroup, 
-  ToggleButton, Box, Menu, MenuItem, Button, Container, Stack, Avatar,
-  Drawer, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Divider
+  ToggleButton, Box, Menu, MenuItem, Button, Container, Stack, Avatar 
 } from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { selectCartTotalItems, toggleCart } from '../../store/cartSlice';
@@ -38,7 +32,6 @@ const Header = () => {
   const isAdmin = useSelector(selectIsAdmin);
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,19 +41,13 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
   const handleNavigate = (path) => {
     navigate(path);
     handleClose();
-    setMobileOpen(false);
   };
 
   const handleLogout = async () => {
     handleClose(); // CLOSE MENU IMMEDIATELY to prevent it from blocking interaction
-    setMobileOpen(false);
     const confirmed = await confirmAction(dispatch, 'Logout', 'Are you sure you want to log out?');
     if (confirmed) {
       dispatch(logoutUser()).then(() => {
@@ -79,76 +66,6 @@ const Header = () => {
   const isMenuPage = location.pathname === '/menu';
   const isHomePage = location.pathname === '/';
 
-  const drawer = (
-    <Box sx={{ height: '100%', bgcolor: BRAND.bg, color: BRAND.text }}>
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Stack direction="row" alignItems="center" spacing={1.5} onClick={() => handleNavigate('/')}>
-          <Avatar sx={{ bgcolor: BRAND.primary, width: 32, height: 32 }}>
-            <FastfoodIcon sx={{ fontSize: 18 }} />
-          </Avatar>
-          <Typography variant="h6" sx={{ fontWeight: 900 }}>Yummy-Tummy</Typography>
-        </Stack>
-        <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
-      <Divider />
-      <List sx={{ px: 2, pt: 2 }}>
-        {!isMenuPage && (
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigate('/menu')}
-              sx={{ borderRadius: 2, bgcolor: 'rgba(0,0,0,0.03)' }}
-            >
-              <ListItemIcon><RestaurantMenuIcon sx={{ color: BRAND.primary }} /></ListItemIcon>
-              <ListItemText primary="View Menu" primaryTypographyProps={{ fontWeight: 800 }} />
-            </ListItemButton>
-          </ListItem>
-        )}
-
-        {(isMenuPage || isHomePage) && (
-          <Box sx={{ mt: 2, mb: 1 }}>
-            <Typography variant="caption" sx={{ fontWeight: 800, color: 'text.secondary', ml: 1, mb: 1, display: 'block', textTransform: 'uppercase' }}>
-              Order Method
-            </Typography>
-            <Stack spacing={1}>
-              <Button 
-                fullWidth
-                variant={orderType === 'DINE_IN' ? 'contained' : 'outlined'}
-                onClick={() => { dispatch(setOrderType('DINE_IN')); }}
-                startIcon={<LocalDiningIcon />}
-                sx={{ 
-                  borderRadius: 3, textTransform: 'none', fontWeight: 700, justifyContent: 'flex-start', px: 2,
-                  bgcolor: orderType === 'DINE_IN' ? BRAND.primary : 'transparent',
-                  color: orderType === 'DINE_IN' ? 'white' : BRAND.text,
-                  borderColor: orderType === 'DINE_IN' ? BRAND.primary : 'rgba(0,0,0,0.1)',
-                  '&:hover': { bgcolor: orderType === 'DINE_IN' ? '#d44646' : 'rgba(0,0,0,0.05)' }
-                }}
-              >
-                Dine-In
-              </Button>
-              <Button 
-                fullWidth
-                variant={orderType === 'DELIVERY' ? 'contained' : 'outlined'}
-                onClick={() => { dispatch(setOrderType('DELIVERY')); }}
-                startIcon={<DeliveryDiningIcon />}
-                sx={{ 
-                  borderRadius: 3, textTransform: 'none', fontWeight: 700, justifyContent: 'flex-start', px: 2,
-                  bgcolor: orderType === 'DELIVERY' ? BRAND.primary : 'transparent',
-                  color: orderType === 'DELIVERY' ? 'white' : BRAND.text,
-                  borderColor: orderType === 'DELIVERY' ? BRAND.primary : 'rgba(0,0,0,0.1)',
-                  '&:hover': { bgcolor: orderType === 'DELIVERY' ? '#d44646' : 'rgba(0,0,0,0.05)' }
-                }}
-              >
-                Delivery
-              </Button>
-            </Stack>
-          </Box>
-        )}
-      </List>
-    </Box>
-  );
-
   return (
     <AppBar 
       position="sticky" 
@@ -164,35 +81,24 @@ const Header = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
           
-          {/* Mobile Menu Icon */}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 1, display: { md: 'none' }, bgcolor: 'rgba(0,0,0,0.03)' }}
-          >
-            <MenuIcon />
-          </IconButton>
-
           {/* Logo Section */}
           <Stack 
             direction="row" 
             alignItems="center" 
             spacing={1.5} 
-            sx={{ cursor: 'pointer', flexGrow: { xs: 1, md: 0 } }} 
+            sx={{ cursor: 'pointer' }} 
             onClick={() => navigate('/')}
           >
-            <Avatar sx={{ bgcolor: BRAND.primary, width: { xs: 32, md: 40 }, height: { xs: 32, md: 40 }, boxShadow: '0 4px 10px rgba(235, 77, 75, 0.3)' }}>
-              <FastfoodIcon sx={{ fontSize: { xs: 18, md: 22 } }} />
+            <Avatar sx={{ bgcolor: BRAND.primary, width: 40, height: 40, boxShadow: '0 4px 10px rgba(235, 77, 75, 0.3)' }}>
+              <FastfoodIcon sx={{ fontSize: 22 }} />
             </Avatar>
-            <Typography variant="h5" sx={{ fontWeight: 900, letterSpacing: '-0.5px', color: BRAND.text, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+            <Typography variant="h5" sx={{ fontWeight: 900, letterSpacing: '-0.5px', color: BRAND.text }}>
               Yummy-Tummy
             </Typography>
           </Stack>
 
-          {/* Center Navigation / Toggles - Hidden on Mobile */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+          {/* Center Navigation / Toggles */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {!isMenuPage && (
               <Button 
                 onClick={() => navigate('/menu')} 
@@ -218,6 +124,7 @@ const Header = () => {
                 onChange={handleOrderTypeChange}
                 aria-label="order type"
                 sx={{ 
+                  display: { xs: 'none', md: 'flex' },
                   bgcolor: '#ffffff',
                   borderRadius: '30px',
                   p: 0.5,
@@ -254,7 +161,7 @@ const Header = () => {
           </Box>
 
           {/* Right Action Icons */}
-          <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, md: 1 }}>
+          <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton 
               onClick={() => dispatch(toggleCart())}
               sx={{ color: BRAND.text, bgcolor: 'rgba(0,0,0,0.03)', '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' } }}
@@ -270,7 +177,7 @@ const Header = () => {
                   } 
                 }}
               >
-                <ShoppingCartOutlinedIcon fontSize={window.innerWidth < 600 ? "small" : "medium"} />
+                <ShoppingCartOutlinedIcon />
               </Badge>
             </IconButton>
 
@@ -287,7 +194,7 @@ const Header = () => {
                   '&:hover': { bgcolor: isAuthenticated ? '#d44646' : 'rgba(0,0,0,0.06)' } 
                 }}
               >
-                <PersonOutlineIcon fontSize={window.innerWidth < 600 ? "small" : "medium"} />
+                <PersonOutlineIcon />
               </IconButton>
               
               <Menu
@@ -335,20 +242,6 @@ const Header = () => {
 
         </Toolbar>
       </Container>
-
-      {/* Mobile Drawer */}
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{ keepMounted: true }}
-        sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 280, borderRadius: '0 20px 20px 0' },
-        }}
-      >
-        {drawer}
-      </Drawer>
     </AppBar>
   );
 };
