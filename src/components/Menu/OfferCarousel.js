@@ -153,8 +153,9 @@ const OfferCarousel = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         textAlign: 'center',
-                        flexGrow: 1, // Ensures all cards match heights safely
-                        boxShadow: `0 15px 30px ${cardColor}60` // Enhanced shadow for better depth
+                        flexGrow: 1, 
+                        minHeight: 220, // Fixed height for consistency
+                        boxShadow: `0 15px 30px ${cardColor}60` 
                       }}
                     >
                       {/* Floating Circular Image */}
@@ -178,16 +179,31 @@ const OfferCarousel = () => {
                       </Box>
 
                       {/* Card Content */}
-                      <Typography variant="h6" sx={{ fontWeight: 800, mb: 0.5, mt: 1, lineHeight: 1.2 }}>
-                        {offer.title}
-                      </Typography>
-                      
-                      <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
-                        <Typography variant="body2" sx={{ fontWeight: 600, opacity: 0.9 }}>
-                          {offer.discountPercentage}% OFF
+                      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
+                        <Typography 
+                          variant="h6" 
+                          sx={{ 
+                            fontWeight: 800, 
+                            mb: 0.5, 
+                            mt: 1, 
+                            lineHeight: 1.2,
+                            height: 44, // Fixed height for title
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            overflow: 'hidden'
+                          }}
+                        >
+                          {offer.title}
                         </Typography>
-                        <FavoriteBorderIcon sx={{ fontSize: 16, opacity: 0.8 }} />
-                      </Stack>
+                        
+                        <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
+                          <Typography variant="body2" sx={{ fontWeight: 600, opacity: 0.9 }}>
+                            {offer.discountPercentage}% OFF
+                          </Typography>
+                          <FavoriteBorderIcon sx={{ fontSize: 16, opacity: 0.8 }} />
+                        </Stack>
+                      </Box>
 
                       {/* Promo Button */}
                       <Button
@@ -200,7 +216,7 @@ const OfferCarousel = () => {
                           fontWeight: 700,
                           px: 3,
                           py: 0.8,
-                          mt: 'auto', // Pushes button reliably to bottom
+                          mt: 'auto', 
                           backdropFilter: 'blur(5px)',
                           boxShadow: 'none',
                           '&:hover': { bgcolor: '#ffffff', color: cardColor, boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }

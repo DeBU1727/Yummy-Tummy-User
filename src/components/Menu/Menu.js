@@ -137,13 +137,14 @@ const Menu = () => {
                         elevation={0}
                         sx={{ 
                           height: '100%', 
+                          minHeight: { xs: 420, sm: 450 }, // Fixed height for consistency
                           display: 'flex', 
                           flexDirection: 'column',
                           borderRadius: 6,
-                          boxShadow: '0 15px 35px rgba(0,0,0,0.06)', // Deepened shadow
+                          boxShadow: '0 15px 35px rgba(0,0,0,0.06)', 
                           border: '1px solid rgba(0,0,0,0.02)',
                           bgcolor: BRAND.surface,
-                          overflow: 'visible', // CRITICAL for floating elements
+                          overflow: 'visible', 
                           transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                           '&:hover': {
                             transform: 'translateY(-10px)',
@@ -182,13 +183,23 @@ const Menu = () => {
                             </Avatar>
                           </Box>
                         </Box>
-
-                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1 }}>
+ 
+                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 2, pb: 1, display: 'flex', flexDirection: 'column' }}>
                           <Typography 
                             gutterBottom 
                             variant="h6" 
                             component="div" 
-                            sx={{ fontWeight: 900, color: BRAND.text, lineHeight: 1.2, mb: 1 }}
+                            sx={{ 
+                              fontWeight: 900, 
+                              color: BRAND.text, 
+                              lineHeight: 1.2, 
+                              mb: 1,
+                              height: 50, // Fixed height for title
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              overflow: 'hidden'
+                            }}
                           >
                             {item.name}
                           </Typography>
@@ -197,7 +208,7 @@ const Menu = () => {
                             color="text.secondary" 
                             sx={{ 
                               mb: 2, 
-                              height: 40, 
+                              height: 40, // Fixed height for description
                               overflow: 'hidden', 
                               display: '-webkit-box', 
                               WebkitLineClamp: 2, 
@@ -207,11 +218,13 @@ const Menu = () => {
                           >
                             {item.description || 'Delicious & freshly prepared with the finest ingredients.'}
                           </Typography>
-                          <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary }}>
-                            ₹{item.price.toFixed(2)}
-                          </Typography>
+                          <Box sx={{ mt: 'auto' }}>
+                            <Typography variant="h5" sx={{ fontWeight: 900, color: BRAND.primary }}>
+                              ₹{item.price.toFixed(2)}
+                            </Typography>
+                          </Box>
                         </CardContent>
-
+ 
                         <CardActions sx={{ justifyContent: 'center', pb: 3, pt: 0 }}>
                           <Button 
                             variant="contained"
