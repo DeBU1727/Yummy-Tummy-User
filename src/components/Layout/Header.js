@@ -7,6 +7,8 @@ import {
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import MenuIcon from '@mui/icons-material/Menu';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { selectCartTotalItems, toggleCart } from '../../store/cartSlice';
