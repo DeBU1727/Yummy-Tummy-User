@@ -125,13 +125,8 @@ const Menu = () => {
                 : (item.image?.startsWith('/uploads') ? `${API_BASE_URL}${item.image}` : item.image);
               
               return (
-                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+                <Grid item key={item.id} xs={12} sm={6} md={4}>
                   <Fade in={true} timeout={600 + (index * 150)}>
-                    {/* FIXED CLIPPING ISSUE:
-                      Wrapped the Card in a Box with pt: 6 and pb: 4. 
-                      This ensures the floating top avatar and the bottom drop shadows
-                      have plenty of physical space inside the Grid item to render without being truncated.
-                    */}
                     <Box sx={{ 
                       pt: 8, 
                       pb: 4, 
@@ -142,19 +137,18 @@ const Menu = () => {
                       <Card 
                         elevation={0}
                         sx={{ 
-                          // STRICT WIDTH LOCK
-                          width: 280,
-                          minWidth: 280,
-                          maxWidth: 280,
+                          // SQUARE-ISH PROPORTIONS
+                          width: 340,
+                          minWidth: 340,
+                          maxWidth: 340,
                           
-                          // STRICT HEIGHT LOCK
-                          height: 500,
-                          minHeight: 500,
-                          maxHeight: 500,
+                          height: 420,
+                          minHeight: 420,
+                          maxHeight: 420,
 
                           display: 'flex', 
                           flexDirection: 'column',
-                          borderRadius: '60px', // Matches the highly rounded "capsule" look in screenshot
+                          borderRadius: '40px', // Adjusted for wider card
                           boxShadow: '0 20px 40px rgba(0,0,0,0.05)', 
                           border: '1px solid rgba(0,0,0,0.02)',
                           bgcolor: BRAND.surface,
@@ -175,8 +169,8 @@ const Menu = () => {
                           <Box 
                             className="food-img"
                             sx={{
-                              width: 140,
-                              height: 140,
+                              width: 150, // Slightly larger image for wider card
+                              height: 150,
                               borderRadius: '50%',
                               bgcolor: '#fff',
                               display: 'flex',
@@ -200,23 +194,22 @@ const Menu = () => {
                           </Box>
                         </Box>
  
-                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 3, pb: 1, display: 'flex', flexDirection: 'column', px: 4 }}>
+                        <CardContent sx={{ flexGrow: 1, textAlign: 'center', pt: 4, pb: 1, display: 'flex', flexDirection: 'column', px: 4 }}>
                           {/* FIXED HEIGHT TITLE */}
                           <Typography 
-                            variant="h6" 
+                            variant="h5" 
                             component="div" 
                             sx={{ 
                               fontWeight: 900, 
                               color: BRAND.text, 
                               lineHeight: 1.2, 
-                              mb: 1.5,
-                              height: 52, 
+                              mb: 1,
+                              height: 60, 
                               display: '-webkit-box',
                               WebkitLineClamp: 2,
                               WebkitBoxOrient: 'vertical',
                               overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              fontSize: '1.25rem'
+                              textOverflow: 'ellipsis'
                             }}
                           >
                             {item.name}
@@ -227,11 +220,11 @@ const Menu = () => {
                             variant="body2" 
                             color="text.secondary" 
                             sx={{ 
-                              mb: 2, 
-                              height: 64, 
+                              mb: 1.5, 
+                              height: 42, 
                               overflow: 'hidden', 
                               display: '-webkit-box', 
-                              WebkitLineClamp: 3, 
+                              WebkitLineClamp: 2, 
                               WebkitBoxOrient: 'vertical',
                               lineHeight: 1.5,
                               textOverflow: 'ellipsis',
@@ -239,18 +232,18 @@ const Menu = () => {
                               fontWeight: 500
                             }}
                           >
-                            {item.description || 'Delicious & freshly prepared with the finest ingredients and authentic spices.'}
+                            {item.description || 'Delicious & freshly prepared with the finest ingredients.'}
                           </Typography>
                           
-                          {/* FIXED HEIGHT PRICE SECTION */}
-                          <Box sx={{ mt: 'auto', height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="h4" sx={{ fontWeight: 900, color: BRAND.primary, letterSpacing: '-0.5px' }}>
+                          {/* PRICE SECTION */}
+                          <Box sx={{ mt: 'auto', height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Typography variant="h4" sx={{ fontWeight: 900, color: BRAND.primary }}>
                               ₹{item.price.toFixed(2)}
                             </Typography>
                           </Box>
                         </CardContent>
  
-                        <CardActions sx={{ justifyContent: 'center', pb: 5, pt: 0, height: 90 }}>
+                        <CardActions sx={{ justifyContent: 'center', pb: 4, pt: 0, height: 80 }}>
                           <Button 
                             variant="contained"
                             startIcon={<AddShoppingCartIcon />}
@@ -260,12 +253,12 @@ const Menu = () => {
                               color: '#fff',
                               borderRadius: '30px',
                               fontWeight: 900,
-                              px: 4,
+                              px: 5,
                               py: 1.5,
                               textTransform: 'none',
                               fontSize: '1rem',
                               boxShadow: '0 10px 25px rgba(240, 147, 43, 0.4)',
-                              '&:hover': { bgcolor: '#e67e22', transform: 'scale(1.05)', boxShadow: '0 15px 30px rgba(240, 147, 43, 0.5)' },
+                              '&:hover': { bgcolor: '#e67e22', transform: 'scale(1.05)' },
                               transition: 'all 0.3s'
                             }}
                           >
