@@ -4,7 +4,7 @@ import { Box, Typography, Container, Button, Paper, Fade, Avatar, Stack, Divider
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import LocalTruckIcon from '@mui/icons-material/LocalTruck';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Header from '../components/Layout/Header';
 
@@ -189,7 +189,7 @@ const OrderConfirmationPage = () => {
                                     }} />
                                     <OrderStep icon={<DoneAllIcon sx={{ fontSize: 20 }} />} label="Placed" active />
                                     <OrderStep icon={<RestaurantIcon sx={{ fontSize: 20 }} />} label="Preparing" active />
-                                    <OrderStep icon={<LocalTruckIcon sx={{ fontSize: 20 }} />} label="Delivery" active={false} />
+                                    <OrderStep icon={<LocalShippingIcon sx={{ fontSize: 20 }} />} label="Delivery" active={false} />
                                 </Stack>
                             </Box>
 
@@ -247,4 +247,4 @@ const OrderConfirmationPage = () => {
     );
 };
 
-export default OrderConfirmationPage;
+export default OrderConfirmationPage;

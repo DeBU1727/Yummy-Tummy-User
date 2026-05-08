@@ -136,10 +136,22 @@ const LoginPage = () => {
                                         autoFocus
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        variant="filled"
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            sx: { borderRadius: 4, backgroundColor: '#f8f9fa' }
+                                        variant="outlined"
+                                        sx={{
+                                            '& .MuiOutlinedInput-root': {
+                                                borderRadius: 4,
+                                                backgroundColor: '#f8f9fa',
+                                                '& fieldset': { border: 'none' },
+                                                '&:hover fieldset': { border: 'none' },
+                                                '&.Mui-focused fieldset': { border: '2px solid', borderColor: BRAND.primary },
+                                                transition: 'all 0.2s',
+                                            },
+                                            '& .MuiInputLabel-root': { fontWeight: 600 },
+                                            '& input:-webkit-autofill': {
+                                                WebkitBoxShadow: '0 0 0 1000px #f8f9fa inset',
+                                                WebkitTextFillColor: BRAND.text,
+                                                borderRadius: 'inherit',
+                                            }
                                         }}
                                     />
                                     <TextField
@@ -152,17 +164,31 @@ const LoginPage = () => {
                                         autoComplete="current-password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        variant="filled"
+                                        variant="outlined"
+                                        sx={{
+                                            '& .MuiOutlinedInput-root': {
+                                                borderRadius: 4,
+                                                backgroundColor: '#f8f9fa',
+                                                '& fieldset': { border: 'none' },
+                                                '&:hover fieldset': { border: 'none' },
+                                                '&.Mui-focused fieldset': { border: '2px solid', borderColor: BRAND.primary },
+                                                transition: 'all 0.2s',
+                                            },
+                                            '& .MuiInputLabel-root': { fontWeight: 600 },
+                                            '& input:-webkit-autofill': {
+                                                WebkitBoxShadow: '0 0 0 1000px #f8f9fa inset',
+                                                WebkitTextFillColor: BRAND.text,
+                                                borderRadius: 'inherit',
+                                            }
+                                        }}
                                         InputProps={{
-                                            disableUnderline: true,
-                                            sx: { borderRadius: 4, backgroundColor: '#f8f9fa' },
                                             endAdornment: (
                                                 <InputAdornment position="end">
                                                     <IconButton
                                                         aria-label="toggle password visibility"
                                                         onClick={handleClickShowPassword}
                                                         edge="end"
-                                                        sx={{ color: 'text.secondary' }}
+                                                        sx={{ color: 'text.secondary', mr: 0.5 }}
                                                     >
                                                         {showPassword ? <VisibilityOff /> : <Visibility />}
                                                     </IconButton>
